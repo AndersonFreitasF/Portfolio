@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meu Portfólio |Fullstack Developer</title>
+    <title>Anderson Freitas | Fullstack Developer</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap"
       rel="stylesheet"
     />
 
@@ -18,27 +18,23 @@
 
     <script>
       tailwind.config = {
+        darkMode: "class",
         theme: {
           extend: {
             fontFamily: {
-              sans: ["Outfit", "sans-serif"],
+              sans: ["Inter", "sans-serif"],
+              display: ["Space Grotesk", "sans-serif"],
             },
             colors: {
-              primary: "#6366f1",
-              secondary: "#ec4899",
-              dark: "#0f172a",
-              card: "#1e293b",
+              background: "#09090b",
+              surface: "#18181b",
+              border: "#27272a",
+              primary: "#a3e635",
+              secondary: "#ecfccb",
             },
-            animation: {
-              blob: "blob 7s infinite",
-            },
-            keyframes: {
-              blob: {
-                "0%": { transform: "translate(0px, 0px) scale(1)" },
-                "33%": { transform: "translate(30px, -50px) scale(1.1)" },
-                "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
-                "100%": { transform: "translate(0px, 0px) scale(1)" },
-              },
+            backgroundImage: {
+              "grid-pattern":
+                "linear-gradient(to right, #27272a 1px, transparent 1px), linear-gradient(to bottom, #27272a 1px, transparent 1px)",
             },
           },
         },
@@ -47,674 +43,572 @@
 
     <style>
       body {
-        background-color: #0f172a;
-        color: #f8fafc;
+        background-color: #09090b;
+        color: #f4f4f5;
+        overflow-x: hidden;
+      }
+
+      .noise-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
       }
 
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 6px;
       }
       ::-webkit-scrollbar-track {
-        background: #0f172a;
+        background: #09090b;
       }
       ::-webkit-scrollbar-thumb {
-        background: #334155;
-        border-radius: 4px;
+        background: #27272a;
+        border-radius: 3px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #475569;
+        background: #3f3f46;
       }
 
       .glass-nav {
-        background: rgba(15, 23, 42, 0.7);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(9, 9, 11, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
-      .gradient-text {
-        background: linear-gradient(to right, #6366f1, #ec4899);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      .text-display {
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      .spotlight-card {
+        position: relative;
+        background: #18181b;
+        overflow: hidden;
+      }
+      .spotlight-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          800px circle at var(--mouse-x) var(--mouse-y),
+          rgba(163, 230, 53, 0.06),
+          transparent 40%
+        );
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .spotlight-card:hover::before {
+        opacity: 1;
+      }
+
+      .spotlight-border {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          600px circle at var(--mouse-x) var(--mouse-y),
+          rgba(163, 230, 53, 0.3),
+          transparent 40%
+        );
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .spotlight-card:hover .spotlight-border {
+        opacity: 1;
+      }
+      .card-content {
+        position: absolute;
+        inset: 1px;
+        background: #18181b;
+        border-radius: inherit;
+        z-index: 1;
+      }
+
+      .marquee-container {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+      }
+      .marquee-content {
+        display: inline-block;
+        animation: scroll 20s linear infinite;
+      }
+      @keyframes scroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
       }
     </style>
   </head>
-  <body class="antialiased relative overflow-x-hidden">
-    <div class="fixed inset-0 w-full h-full pointer-events-none z-[-1]">
-      <div
-        class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"
-      ></div>
-      <div
-        class="absolute top-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"
-      ></div>
-      <div
-        class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"
-      ></div>
-    </div>
+  <body class="antialiased selection:bg-primary selection:text-black">
+    <div class="noise-overlay"></div>
 
-    <nav
-      class="fixed w-full z-50 glass-nav transition-all duration-300"
-      id="navbar"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20">
-          <div
-            class="flex-shrink-0 cursor-pointer"
-            onclick="window.scrollTo(0,0)"
-          >
-            <span
-              class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-pink-500"
-              >Portfólio.</span
-            >
-          </div>
+    <div
+      class="fixed inset-0 z-[-1] bg-grid-pattern bg-[size:50px_50px] opacity-[0.03]"
+    ></div>
 
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-8">
-              <a
-                href="#home"
-                class="hover:text-indigo-400 transition-colors px-3 py-2 text-sm font-medium"
-                >Início</a
-              >
-              <a
-                href="#about"
-                class="hover:text-indigo-400 transition-colors px-3 py-2 text-sm font-medium"
-                >Sobre</a
-              >
-              <a
-                href="#projects"
-                class="hover:text-indigo-400 transition-colors px-3 py-2 text-sm font-medium"
-                >Projetos</a
-              >
-              <a
-                href="#contact"
-                class="px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all text-sm font-medium shadow-lg shadow-indigo-500/20"
-                >Contato</a
-              >
-            </div>
-          </div>
+    <div
+      class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]"
+    ></div>
 
-          <div class="md:hidden">
-            <button
-              id="mobile-menu-btn"
-              class="text-gray-300 hover:text-white focus:outline-none"
-            >
-              <i data-lucide="menu" class="w-8 h-8"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="md:hidden hidden bg-slate-900/95 backdrop-blur-md border-b border-gray-800 absolute w-full"
-        id="mobile-menu"
+    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+      <nav
+        class="glass-nav rounded-full px-6 py-3 flex items-center justify-between gap-8 shadow-2xl shadow-black/50"
       >
-        <div class="px-4 pt-2 pb-6 space-y-2 text-center">
+        <a
+          href="#"
+          class="text-display font-bold text-lg tracking-tight text-white hover:text-primary transition-colors"
+          >AF.</a
+        >
+
+        <div class="hidden md:flex items-center gap-6">
           <a
             href="#home"
-            class="block hover:bg-gray-800 px-3 py-4 rounded-md text-base font-medium"
-            onclick="toggleMenu()"
+            class="text-sm text-gray-400 hover:text-white transition-colors"
             >Início</a
           >
           <a
-            href="#about"
-            class="block hover:bg-gray-800 px-3 py-4 rounded-md text-base font-medium"
-            onclick="toggleMenu()"
-            >Sobre</a
-          >
-          <a
             href="#projects"
-            class="block hover:bg-gray-800 px-3 py-4 rounded-md text-base font-medium"
-            onclick="toggleMenu()"
+            class="text-sm text-gray-400 hover:text-white transition-colors"
             >Projetos</a
           >
           <a
-            href="#contact"
-            class="block bg-indigo-600 mt-4 px-3 py-4 rounded-md text-base font-medium"
-            onclick="toggleMenu()"
-            >Fale Comigo</a
+            href="#about"
+            class="text-sm text-gray-400 hover:text-white transition-colors"
+            >Sobre</a
           >
         </div>
-      </div>
-    </nav>
+
+        <a
+          href="#contact"
+          class="hidden md:flex items-center gap-2 bg-white text-black px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors"
+        >
+          Contato <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </a>
+
+        <button id="mobile-menu-btn" class="md:hidden text-gray-300">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </nav>
+    </div>
+
+    <div
+      id="mobile-menu"
+      class="fixed inset-0 bg-background/95 backdrop-blur-xl z-40 hidden flex-col justify-center items-center gap-8 opacity-0 transition-opacity duration-300"
+    >
+      <a
+        href="#home"
+        class="text-2xl text-display font-bold"
+        onclick="toggleMenu()"
+        >Início</a
+      >
+      <a
+        href="#projects"
+        class="text-2xl text-display font-bold"
+        onclick="toggleMenu()"
+        >Projetos</a
+      >
+      <a
+        href="#about"
+        class="text-2xl text-display font-bold"
+        onclick="toggleMenu()"
+        >Sobre</a
+      >
+      <a
+        href="#contact"
+        class="text-2xl text-display font-bold text-primary"
+        onclick="toggleMenu()"
+        >Contato</a
+      >
+      <button class="absolute top-8 right-8" onclick="toggleMenu()">
+        <i data-lucide="x" class="w-8 h-8"></i>
+      </button>
+    </div>
 
     <section
       id="home"
-      class="min-h-screen flex items-center justify-center pt-20 px-4"
+      class="min-h-screen flex flex-col items-center justify-center pt-20 px-4 relative"
     >
-      <div
-        class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-      >
-        <div class="space-y-8 text-center lg:text-left">
-          <div
-            class="inline-block px-4 py-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-sm font-semibold mb-2"
-          >
-            👋 Olá, bem-vindo ao meu portfolio
-          </div>
-          <h1 class="text-5xl md:text-7xl font-bold leading-tight">
-            Eu crio experiências digitais <br />
-            <span class="gradient-text">Incríveis.</span>
-          </h1>
-          <p
-            class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed"
-          >
-            Oi! Me chamo Anderson Freitas e sou um desenvolvedor apaixonado por
-            transformar ideias complexas em interfaces simples, bonitas e
-            funcionais.Meu foco é em performance e experiência do usuário e para
-            isso uso tecnologias como React e Node.
-          </p>
-          <div
-            class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-          >
-            <a
-              href="#projects"
-              class="px-8 py-4 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-lg shadow-indigo-500/30 hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
-            >
-              Ver Projetos <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-            <a
-              href="#contact"
-              class="px-8 py-4 rounded-full border border-gray-600 hover:border-white hover:bg-white/5 text-white font-semibold transition-all flex items-center justify-center gap-2"
-            >
-              Baixar CV <i data-lucide="download" class="w-4 h-4"></i>
-            </a>
-          </div>
-
-          <div
-            class="flex items-center justify-center lg:justify-start gap-6 pt-6 text-gray-400"
-          >
-            <a href="#" class="hover:text-white hover:scale-110 transition-all"
-              ><i data-lucide="github" class="w-6 h-6"></i
-            ></a>
-            <a
-              href="#"
-              class="hover:text-blue-400 hover:scale-110 transition-all"
-              ><i data-lucide="linkedin" class="w-6 h-6"></i
-            ></a>
-            <a
-              href="#"
-              class="hover:text-pink-400 hover:scale-110 transition-all"
-              ><i data-lucide="instagram" class="w-6 h-6"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="relative hidden lg:block">
-          <div
-            class="relative z-10 bg-gradient-to-tr from-slate-800 to-slate-900 p-2 rounded-2xl shadow-2xl border border-gray-700 transform rotate-3 hover:rotate-0 transition-all duration-500"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              alt="Coding Setup"
-              class="rounded-xl w-full object-cover h-[500px] opacity-90 hover:opacity-100 transition-opacity"
-            />
-
-            <div
-              class="absolute -bottom-8 -left-8 bg-slate-800 p-4 rounded-xl border border-gray-700 shadow-xl flex items-center gap-4 animate-bounce"
-              style="animation-duration: 3s"
-            >
-              <div class="bg-indigo-500/20 p-3 rounded-lg text-indigo-400">
-                <i data-lucide="code" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <p class="text-xs text-gray-400">Código</p>
-                <p class="font-bold">Limpo & Eficiente</p>
-              </div>
-            </div>
-
-            <div
-              class="absolute -top-8 -right-8 bg-slate-800 p-4 rounded-xl border border-gray-700 shadow-xl flex items-center gap-4 animate-bounce"
-              style="animation-duration: 4s"
-            >
-              <div class="bg-pink-500/20 p-3 rounded-lg text-pink-400">
-                <i data-lucide="palette" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <p class="text-xs text-gray-400">Design</p>
-                <p class="font-bold">UI/UX Moderno</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="border-y border-white/5 bg-white/5 py-10">
-      <div class="max-w-7xl mx-auto px-4 overflow-hidden">
-        <p
-          class="text-center text-gray-400 mb-6 text-sm uppercase tracking-wider"
-        >
-          Tecnologias que domino
-        </p>
+      <div class="text-center max-w-4xl mx-auto space-y-6">
         <div
-          class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500"
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-white/5 text-xs text-gray-400 mb-4 animate-fade-in-up"
         >
-          <div
-            class="flex flex-col items-center gap-2 hover:text-orange-500 transition-colors"
-          >
-            <i data-lucide="file-code-2" class="w-8 h-8"></i>
-            <span class="text-xs font-semibold">HTML5</span>
-          </div>
-          <div
-            class="flex flex-col items-center gap-2 hover:text-blue-500 transition-colors"
-          >
-            <i data-lucide="codepen" class="w-8 h-8"></i>
-            <span class="text-xs font-semibold">CSS3</span>
-          </div>
-          <div
-            class="flex flex-col items-center gap-2 hover:text-yellow-400 transition-colors"
-          >
-            <i data-lucide="braces" class="w-8 h-8"></i>
-            <span class="text-xs font-semibold">JavaScript</span>
-          </div>
-          <div
-            class="flex flex-col items-center gap-2 hover:text-cyan-400 transition-colors"
-          >
-            <i data-lucide="atom" class="w-8 h-8"></i>
-            <span class="text-xs font-semibold">React</span>
-          </div>
-          <div
-            class="flex flex-col items-center gap-2 hover:text-green-500 transition-colors"
-          >
-            <i data-lucide="server" class="w-8 h-8"></i>
-            <span class="text-xs font-semibold">Node.js</span>
-          </div>
-          <div
-            class="flex flex-col items-center gap-2 hover:text-teal-400 transition-colors"
-          >
-            <i data-lucide="wind" class="w-8 h-8"></i>
-            <span class="text-xs font-semibold">Tailwind</span>
-          </div>
+          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+          Disponível para novos projetos
         </div>
-      </div>
-    </div>
 
-    <section id="projects" class="py-24 px-4 relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
+        <h1
+          class="text-display text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-white"
+        >
+          ANDERSON <br />
           <span
-            class="text-indigo-400 font-semibold tracking-wider uppercase text-sm"
-            >Portfolio</span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-100"
+            >FREITAS</span
           >
-          <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-4">
-            Meus Projetos Recentes
-          </h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">
-            Alguns dos trabalhos que desenvolvi, variando de aplicações web a
-            sites institucionais.
-          </p>
-        </div>
+        </h1>
 
-        <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            class="group bg-slate-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-2"
-          >
-            <div class="relative overflow-hidden h-48">
-              <img
-                src="https://placehold.co/600x400/1e293b/FFF?text=E-Commerce+App"
-                alt="Project 1"
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-              />
-              <div
-                class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4"
-              >
-                <a
-                  href="#"
-                  class="p-3 bg-white rounded-full text-slate-900 hover:bg-indigo-500 hover:text-white transition-colors"
-                  title="Ver Código"
-                  ><i data-lucide="github" class="w-5 h-5"></i
-                ></a>
-                <a
-                  href="#"
-                  class="p-3 bg-white rounded-full text-slate-900 hover:bg-indigo-500 hover:text-white transition-colors"
-                  title="Ver Demo"
-                  ><i data-lucide="external-link" class="w-5 h-5"></i
-                ></a>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition-colors"
-              >
-                E-Commerce Moderno
-              </h3>
-              <p class="text-gray-400 text-sm mb-4">
-                Uma plataforma completa de vendas com carrinho, checkout e
-                painel administrativo.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-3 py-1 bg-slate-700 rounded-full text-xs text-indigo-300"
-                  >React</span
-                >
-                <span
-                  class="px-3 py-1 bg-slate-700 rounded-full text-xs text-indigo-300"
-                  >Stripe</span
-                >
-                <span
-                  class="px-3 py-1 bg-slate-700 rounded-full text-xs text-indigo-300"
-                  >Tailwind</span
-                >
-              </div>
-            </div>
-          </div>
+        <p
+          class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto leading-relaxed"
+        >
+          Fullstack Developer focado em criar experiências digitais que unem
+          <span class="text-white">performance</span> e
+          <span class="text-white">design funcional</span>.
+        </p>
 
-          <div
-            class="group bg-slate-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-pink-500 transition-all hover:shadow-2xl hover:shadow-pink-500/10 hover:-translate-y-2"
-          >
-            <div class="relative overflow-hidden h-48">
-              <img
-                src="https://placehold.co/600x400/1e293b/FFF?text=Dashboard+Financeiro"
-                alt="Project 2"
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-              />
-              <div
-                class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4"
-              >
-                <a
-                  href="#"
-                  class="p-3 bg-white rounded-full text-slate-900 hover:bg-pink-500 hover:text-white transition-colors"
-                  ><i data-lucide="github" class="w-5 h-5"></i
-                ></a>
-                <a
-                  href="#"
-                  class="p-3 bg-white rounded-full text-slate-900 hover:bg-pink-500 hover:text-white transition-colors"
-                  ><i data-lucide="external-link" class="w-5 h-5"></i
-                ></a>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-pink-400 transition-colors"
-              >
-                Dashboard Financeiro
-              </h3>
-              <p class="text-gray-400 text-sm mb-4">
-                Painel interativo para visualização de dados financeiros com
-                gráficos em tempo real.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-3 py-1 bg-slate-700 rounded-full text-xs text-pink-300"
-                  >Vue.js</span
-                >
-                <span
-                  class="px-3 py-1 bg-slate-700 rounded-full text-xs text-pink-300"
-                  >Chart.js</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="group bg-slate-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2"
-          >
-            <div class="relative overflow-hidden h-48">
-              <img
-                src="https://placehold.co/600x400/1e293b/FFF?text=App+de+Tarefas+AI"
-                alt="Project 3"
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-              />
-              <div
-                class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4"
-              >
-                <a
-                  href="#"
-                  class="p-3 bg-white rounded-full text-slate-900 hover:bg-blue-500 hover:text-white transition-colors"
-                  ><i data-lucide="github" class="w-5 h-5"></i
-                ></a>
-                <a
-                  href="#"
-                  class="p-3 bg-white rounded-full text-slate-900 hover:bg-blue-500 hover:text-white transition-colors"
-                  ><i data-lucide="external-link" class="w-5 h-5"></i
-                ></a>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors"
-              >
-                App de Tarefas AI
-              </h3>
-              <p class="text-gray-400 text-sm mb-4">
-                Gerenciador de tarefas que utiliza IA para priorizar suas
-                atividades diárias.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-3 py-1 bg-slate-700 rounded-full text-xs text-blue-300"
-                  >Python</span
-                >
-                <span
-                  class="px-3 py-1 bg-slate-700 rounded-full text-xs text-blue-300"
-                  >OpenAI API</span
-                >
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        <div class="mt-12 text-center">
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+        >
           <a
-            href="#"
-            class="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+            href="#projects"
+            class="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-primary transition-colors flex items-center gap-2 group"
           >
-            Ver todos os projetos no GitHub
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            Ver Projetos
+            <i
+              data-lucide="arrow-down"
+              class="w-4 h-4 group-hover:translate-y-1 transition-transform"
+            ></i>
+          </a>
+          <a
+            href="#contact"
+            class="px-8 py-3 border border-border bg-white/5 text-white font-medium rounded-full hover:bg-white/10 transition-colors"
+          >
+            Baixar CV
           </a>
         </div>
       </div>
-    </section>
 
-    <section id="about" class="py-24 px-4 bg-slate-800/50">
       <div
-        class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+        class="absolute bottom-10 left-0 w-full border-y border-white/5 bg-black/20 backdrop-blur-sm py-4"
       >
-        <div class="order-2 md:order-1 relative">
+        <div class="marquee-container">
           <div
-            class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-2xl blur opacity-30 transform rotate-6"
-          ></div>
-          <!-- <img
-            src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Profile"
-            class="relative rounded-2xl shadow-2xl w-full object-cover h-[400px] md:h-[500px] grayscale hover:grayscale-0 transition-all duration-500"
-          /> -->
-        </div>
-        <div class="order-1 md:order-2">
-          <h2 class="text-3xl md:text-5xl font-bold mb-6">Sobre Mim</h2>
-          <div class="space-y-4 text-gray-400 text-lg">
-            <p>
-              Comecei minha jornada na programação ainda no meu ensino médio
-              através de um curso tecnico profissionalizante (programando em C
-              na epoca)e desde então tenho me dedicado a criar soluções web que
-              satisfaçam a necessidade do usuario final!
-            </p>
-            <p>
-              Sou especializado em desenvolvimento Full Stack, com um carinho
-              especial pelo Back-end. Almejo ser um engenheiro de software no
-              futuro, e tenho muito interesse em devops.
-            </p>
-            <p>
-              Quando não estou codando, provavelmente estarei ocupado brincando
-              com meu gato ou jogando algo.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-2 gap-6 mt-8">
-            <div class="p-4 bg-slate-900 rounded-xl border border-gray-700">
-              <h4 class="text-3xl font-bold text-indigo-400 mb-1">2+</h4>
-              <p class="text-sm text-gray-500">Anos de Experiência</p>
-            </div>
-            <div class="p-4 bg-slate-900 rounded-xl border border-gray-700">
-              <h4 class="text-3xl font-bold text-pink-400 mb-1">X+</h4>
-              <p class="text-sm text-gray-500">Projetos Entregues</p>
-            </div>
+            class="marquee-content text-gray-500 font-mono text-sm uppercase tracking-widest flex gap-12"
+          >
+            <span>JavaScript</span> <span>React</span> <span>Node.js</span>
+            <span>TypeScript</span> <span>Tailwind</span> <span>Next.js</span>
+            <span>PostgreSQL</span> <span>Git</span> <span>JavaScript</span>
+            <span>React</span> <span>Node.js</span> <span>TypeScript</span>
+            <span>Tailwind</span> <span>Next.js</span> <span>PostgreSQL</span>
+            <span>Git</span> <span>JavaScript</span> <span>React</span>
+            <span>Node.js</span> <span>TypeScript</span> <span>Tailwind</span>
+            <span>Next.js</span> <span>PostgreSQL</span> <span>Git</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="py-24 px-4 relative overflow-hidden">
-      <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[100px] -z-10"
-      ></div>
+    <section id="projects" class="py-32 px-4 bg-surface/30">
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4"
+        >
+          <div>
+            <h2
+              class="text-display text-3xl md:text-4xl font-bold text-white mb-2"
+            >
+              Projetos Selecionados
+            </h2>
+            <p class="text-gray-400">Uma coleção do meu trabalho recente.</p>
+          </div>
+          <a
+            href="https://github.com/seu-user"
+            target="_blank"
+            class="text-sm text-white hover:text-primary flex items-center gap-2 border-b border-white/20 pb-1 hover:border-primary transition-colors"
+          >
+            Ver GitHub Completo
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+        </div>
 
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          id="cards-container"
+        ></div>
+      </div>
+    </section>
+
+    <section id="about" class="py-24 px-4 relative">
+      <div class="max-w-7xl mx-auto">
+        <h2
+          class="text-display text-3xl md:text-5xl font-bold text-white mb-12 text-center"
+        >
+          Sobre Mim
+        </h2>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[600px]"
+        >
+          <div
+            class="md:col-span-2 md:row-span-2 bg-surface border border-white/5 rounded-3xl p-8 flex flex-col justify-between hover:border-white/10 transition-colors"
+          >
+            <div>
+              <div
+                class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-6 text-primary"
+              >
+                <i data-lucide="user" class="w-8 h-8"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-4 font-display">
+                A Jornada
+              </h3>
+              <div class="space-y-4 text-gray-400 leading-relaxed">
+                <p>
+                  Minha história com código começou no ensino médio, onde tive
+                  meu primeiro contato com C em um curso técnico, e desde então
+                  sempre tive curiosidade pela área.
+                </p>
+                <p>
+                  Hoje, transformei essa curiosidade em profissão. Sou
+                  especializado em <strong>Back-end</strong>, mas navego bem no
+                  Front. Nas horas vagas, provavelmente vou estar jogando ou
+                  brincando com meu gato.
+                </p>
+              </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-white/5">
+              <p class="text-sm text-gray-500">
+                Localização: <span class="text-white">Brasil 🇧🇷</span>
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="md:col-span-1 md:row-span-1 bg-surface border border-white/5 rounded-3xl p-6 flex flex-col justify-center items-center text-center hover:border-white/10 transition-colors group relative overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-primary/5 scale-0 group-hover:scale-100 transition-transform rounded-3xl"
+            ></div>
+            <i
+              data-lucide="graduation-cap"
+              class="w-10 h-10 text-primary mb-4 group-hover:-translate-y-1 transition-transform"
+            ></i>
+            <h4 class="text-white font-bold mb-1">Formação</h4>
+            <p class="text-sm font-semibold text-white">
+              Ciências da Computação
+            </p>
+            <p class="text-xs text-gray-500 mt-1">IFCE (Cursando)</p>
+          </div>
+
+          <div
+            class="md:col-span-1 md:row-span-1 bg-primary text-black rounded-3xl p-6 flex flex-col justify-center items-center text-center"
+          >
+            <h4 class="text-5xl font-bold font-display mb-1">2+</h4>
+            <p class="text-sm font-semibold opacity-80">Anos de Experiência</p>
+          </div>
+
+          <div
+            class="md:col-span-2 md:row-span-1 bg-surface border border-white/5 rounded-3xl p-8 relative overflow-hidden group"
+          >
+            <h3
+              class="text-xl font-bold text-white mb-6 font-display z-10 relative"
+            >
+              Stack Principal
+            </h3>
+            <div class="flex flex-wrap gap-3 relative z-10">
+              <span
+                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                >React</span
+              >
+              <span
+                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                >Node.js</span
+              >
+              <span
+                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                >TypeScript</span
+              >
+              <span
+                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                >Docker</span
+              >
+              <span
+                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                >SQL</span
+              >
+              <span
+                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                >AWS</span
+              >
+            </div>
+            <i
+              data-lucide="code-2"
+              class="absolute -bottom-4 -right-4 w-32 h-32 text-white/5 group-hover:text-white/10 transition-colors rotate-12"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-24 px-4">
       <div
-        class="max-w-4xl mx-auto bg-slate-800/80 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-gray-700 shadow-2xl"
+        class="max-w-2xl mx-auto bg-surface border border-white/5 rounded-3xl p-8 md:p-12 relative overflow-hidden"
       >
-        <div class="text-center mb-10">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            Vamos trabalhar juntos?
+        <div
+          class="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[60px] rounded-full pointer-events-none"
+        ></div>
+
+        <div class="mb-10">
+          <h2 class="text-display text-3xl font-bold text-white mb-2">
+            Vamos conversar?
           </h2>
           <p class="text-gray-400">
-            Tem um projeto em mente ou apenas quer dar um oi? Preencha o
-            formulário abaixo.
+            Preencha o formulário e entrarei em contato em breve.
           </p>
         </div>
 
-        <form class="space-y-6" onsubmit="handleForm(event)">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-sm font-medium text-gray-400 mb-2"
-                >Seu Nome</label
+        <form class="space-y-4" onsubmit="handleForm(event)">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1">
+              <label
+                class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                >Nome</label
               >
               <input
                 type="text"
-                placeholder="João Silva"
                 required
-                class="w-full bg-slate-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                class="w-full bg-background border border-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-700"
+                placeholder="Anderson Freitas"
               />
             </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-400 mb-2"
-                >Seu Email</label
+            <div class="space-y-1">
+              <label
+                class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                >Email</label
               >
               <input
                 type="email"
-                placeholder="joao@exemplo.com"
                 required
-                class="w-full bg-slate-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                class="w-full bg-background border border-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-700"
+                placeholder="ola@email.com"
               />
             </div>
           </div>
 
-          <div>
-            <label class="block text-sm font-medium text-gray-400 mb-2"
+          <div class="space-y-1">
+            <label
+              class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
               >Mensagem</label
             >
             <textarea
               rows="4"
-              placeholder="Conte-me sobre seu projeto..."
               required
-              class="w-full bg-slate-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              class="w-full bg-background border border-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-700"
+              placeholder="Como posso ajudar no seu projeto?"
             ></textarea>
           </div>
 
           <button
             type="submit"
-            class="w-full bg-gradient-to-r from-indigo-600 to-pink-600 hover:from-indigo-700 hover:to-pink-700 text-white font-bold py-4 rounded-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-indigo-500/25"
+            class="w-full bg-white text-black font-bold py-4 rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-2 group"
           >
             Enviar Mensagem
+            <i
+              data-lucide="send"
+              class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+            ></i>
           </button>
         </form>
       </div>
     </section>
 
-    <footer class="bg-slate-950 border-t border-gray-800 pt-16 pb-8 px-4">
-      <div class="max-w-7xl mx-auto flex flex-col items-center justify-center">
-        <div class="mb-8 flex space-x-6">
-          <a href="#" class="text-gray-400 hover:text-white transition-colors"
-            ><i data-lucide="github"></i
-          ></a>
-          <a
-            href="#"
-            class="text-gray-400 hover:text-blue-400 transition-colors"
-            ><i data-lucide="twitter"></i
-          ></a>
-          <a
-            href="#"
-            class="text-gray-400 hover:text-pink-400 transition-colors"
-            ><i data-lucide="dribbble"></i
-          ></a>
-          <a
-            href="#"
-            class="text-gray-400 hover:text-blue-600 transition-colors"
-            ><i data-lucide="linkedin"></i
-          ></a>
-        </div>
-        <p class="text-gray-500 text-sm text-center">
-          &copy; 2025 Anderson Freires de Freitas. Todos os direitos reservados.
-          <br />
-          Feito com
-          <i data-lucide="heart" class="inline w-4 h-4 text-red-500"></i> e
-          muito café.
-        </p>
+    <footer class="py-8 text-center border-t border-white/5">
+      <div class="flex items-center justify-center gap-6 mb-4">
+        <a href="#" class="text-gray-500 hover:text-white transition-colors"
+          ><i data-lucide="github" class="w-5 h-5"></i
+        ></a>
+        <a href="#" class="text-gray-500 hover:text-blue-400 transition-colors"
+          ><i data-lucide="linkedin" class="w-5 h-5"></i
+        ></a>
+        <a href="#" class="text-gray-500 hover:text-pink-400 transition-colors"
+          ><i data-lucide="instagram" class="w-5 h-5"></i
+        ></a>
       </div>
+      <p class="text-xs text-gray-600">
+        &copy; 2025 Anderson Freires de Freitas.
+      </p>
     </footer>
 
     <div
       id="toast"
-      class="fixed bottom-5 right-5 bg-green-500 text-white px-6 py-4 rounded-lg shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 z-50"
+      class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white text-black px-6 py-3 rounded-full shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 z-50 font-medium"
     >
-      <i data-lucide="check-circle" class="w-6 h-6"></i>
-      <div>
-        <h4 class="font-bold">Sucesso!</h4>
-        <p class="text-sm">Mensagem enviada com sucesso.</p>
-      </div>
+      <i data-lucide="check-circle" class="w-5 h-5 text-green-600"></i>
+      <span>Mensagem enviada!</span>
     </div>
 
     <script>
       lucide.createIcons();
 
-      window.addEventListener("scroll", () => {
-        const navbar = document.getElementById("navbar");
-        if (window.scrollY > 50) {
-          navbar.classList.add("shadow-lg");
-        } else {
-          navbar.classList.remove("shadow-lg");
-        }
-      });
-
-      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
       const mobileMenu = document.getElementById("mobile-menu");
-
       function toggleMenu() {
-        mobileMenu.classList.toggle("hidden");
-        const icon = mobileMenu.classList.contains("hidden") ? "menu" : "x";
-
-        if (icon === "x") {
-          mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-8 h-8"></i>';
+        const isHidden = mobileMenu.classList.contains("hidden");
+        if (isHidden) {
+          mobileMenu.classList.remove("hidden");
+          setTimeout(() => mobileMenu.classList.remove("opacity-0"), 10);
+          document.body.style.overflow = "hidden";
         } else {
-          mobileMenuBtn.innerHTML =
-            '<i data-lucide="menu" class="w-8 h-8"></i>';
+          mobileMenu.classList.add("opacity-0");
+          setTimeout(() => {
+            mobileMenu.classList.add("hidden");
+            document.body.style.overflow = "";
+          }, 300);
         }
-        lucide.createIcons();
       }
-
-      mobileMenuBtn.addEventListener("click", toggleMenu);
+      document
+        .getElementById("mobile-menu-btn")
+        .addEventListener("click", toggleMenu);
 
       function handleForm(e) {
         e.preventDefault();
         const btn = e.target.querySelector("button");
-        const originalText = btn.innerText;
+        const originalContent = btn.innerHTML;
 
-        btn.innerText = "Enviando...";
-        btn.disabled = true;
-        btn.classList.add("opacity-75", "cursor-not-allowed");
+        btn.innerHTML = "Enviando...";
+        btn.classList.add("opacity-70", "cursor-not-allowed");
 
         setTimeout(() => {
           e.target.reset();
-
-          btn.innerText = originalText;
-          btn.disabled = false;
-          btn.classList.remove("opacity-75", "cursor-not-allowed");
+          btn.innerHTML = originalContent;
+          btn.classList.remove("opacity-70", "cursor-not-allowed");
 
           const toast = document.getElementById("toast");
           toast.classList.remove("translate-y-20", "opacity-0");
-
-          setTimeout(() => {
-            toast.classList.add("translate-y-20", "opacity-0");
-          }, 3000);
+          setTimeout(
+            () => toast.classList.add("translate-y-20", "opacity-0"),
+            3000
+          );
         }, 1500);
       }
+
+      window.onload = function () {
+        const container = document.getElementById("cards-container");
+        const cards = document.querySelectorAll(".spotlight-card");
+
+        if (container) {
+          container.onmousemove = (e) => {
+            for (const card of cards) {
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+
+              card.style.setProperty("--mouse-x", `${x}px`);
+              card.style.setProperty("--mouse-y", `${y}px`);
+            }
+          };
+        }
+      };
     </script>
   </body>
 </html>
