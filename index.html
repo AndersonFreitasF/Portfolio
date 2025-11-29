@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anderson Freitas | Fullstack Developer</title>
 
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,7 +16,15 @@
       rel="stylesheet"
     />
 
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Devicon (Para ícones de tecnologias) -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
 
     <script>
       tailwind.config = {
@@ -89,50 +99,6 @@
         background: #18181b;
         overflow: hidden;
       }
-      .spotlight-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-          800px circle at var(--mouse-x) var(--mouse-y),
-          rgba(163, 230, 53, 0.06),
-          transparent 40%
-        );
-        opacity: 0;
-        transition: opacity 0.5s;
-        pointer-events: none;
-        z-index: 1;
-      }
-      .spotlight-card:hover::before {
-        opacity: 1;
-      }
-
-      .spotlight-border {
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          600px circle at var(--mouse-x) var(--mouse-y),
-          rgba(163, 230, 53, 0.3),
-          transparent 40%
-        );
-        opacity: 0;
-        transition: opacity 0.5s;
-        pointer-events: none;
-        z-index: 0;
-      }
-      .spotlight-card:hover .spotlight-border {
-        opacity: 1;
-      }
-      .card-content {
-        position: absolute;
-        inset: 1px;
-        background: #18181b;
-        border-radius: inherit;
-        z-index: 1;
-      }
 
       .marquee-container {
         overflow: hidden;
@@ -140,8 +106,11 @@
         position: relative;
       }
       .marquee-content {
-        display: inline-block;
-        animation: scroll 20s linear infinite;
+        display: inline-flex;
+        animation: scroll 40s linear infinite;
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
       }
       @keyframes scroll {
         from {
@@ -150,6 +119,10 @@
         to {
           transform: translateX(-50%);
         }
+      }
+
+      .timeline-dot {
+        box-shadow: 0 0 0 4px rgba(163, 230, 53, 0.2);
       }
     </style>
   </head>
@@ -181,14 +154,19 @@
             >Início</a
           >
           <a
-            href="#projects"
-            class="text-sm text-gray-400 hover:text-white transition-colors"
-            >Projetos</a
-          >
-          <a
             href="#about"
             class="text-sm text-gray-400 hover:text-white transition-colors"
             >Sobre</a
+          >
+          <a
+            href="#experience"
+            class="text-sm text-gray-400 hover:text-white transition-colors"
+            >Experiência</a
+          >
+          <a
+            href="#projects"
+            class="text-sm text-gray-400 hover:text-white transition-colors"
+            >Projetos</a
           >
         </div>
 
@@ -216,16 +194,22 @@
         >Início</a
       >
       <a
-        href="#projects"
-        class="text-2xl text-display font-bold"
-        onclick="toggleMenu()"
-        >Projetos</a
-      >
-      <a
         href="#about"
         class="text-2xl text-display font-bold"
         onclick="toggleMenu()"
         >Sobre</a
+      >
+      <a
+        href="#experience"
+        class="text-2xl text-display font-bold"
+        onclick="toggleMenu()"
+        >Experiência</a
+      >
+      <a
+        href="#projects"
+        class="text-2xl text-display font-bold"
+        onclick="toggleMenu()"
+        >Projetos</a
       >
       <a
         href="#contact"
@@ -240,14 +224,14 @@
 
     <section
       id="home"
-      class="min-h-screen flex flex-col items-center justify-center pt-20 px-4 relative"
+      class="min-h-screen flex flex-col items-center justify-start pt-36 pb-20 px-4 relative"
     >
       <div class="text-center max-w-4xl mx-auto space-y-6">
         <div
           class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-white/5 text-xs text-gray-400 mb-4 animate-fade-in-up"
         >
           <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-          Disponível para novos projetos
+          Disponível para novos desafios
         </div>
 
         <h1
@@ -263,19 +247,18 @@
         <p
           class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto leading-relaxed"
         >
-          Fullstack Developer focado em criar experiências digitais que unem
-          <span class="text-white">performance</span> e
-          <span class="text-white">design funcional</span>.
+          Fullstack Developer. Transformando linhas de código em soluções reais
+          com foco em performance e qualidade.
         </p>
 
         <div
           class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
         >
           <a
-            href="#projects"
+            href="#experience"
             class="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-primary transition-colors flex items-center gap-2 group"
           >
-            Ver Projetos
+            Ver Experiência
             <i
               data-lucide="arrow-down"
               class="w-4 h-4 group-hover:translate-y-1 transition-transform"
@@ -285,58 +268,120 @@
             href="#contact"
             class="px-8 py-3 border border-border bg-white/5 text-white font-medium rounded-full hover:bg-white/10 transition-colors"
           >
-            Baixar CV
+            Fale Comigo
           </a>
         </div>
       </div>
 
       <div
-        class="absolute bottom-10 left-0 w-full border-y border-white/5 bg-black/20 backdrop-blur-sm py-4"
+        class="absolute bottom-10 left-0 w-full border-y border-white/5 bg-black/20 backdrop-blur-sm py-6"
       >
         <div class="marquee-container">
-          <div
-            class="marquee-content text-gray-500 font-mono text-sm uppercase tracking-widest flex gap-12"
-          >
-            <span>JavaScript</span> <span>React</span> <span>Node.js</span>
-            <span>TypeScript</span> <span>Tailwind</span> <span>Next.js</span>
-            <span>PostgreSQL</span> <span>Git</span> <span>JavaScript</span>
-            <span>React</span> <span>Node.js</span> <span>TypeScript</span>
-            <span>Tailwind</span> <span>Next.js</span> <span>PostgreSQL</span>
-            <span>Git</span> <span>JavaScript</span> <span>React</span>
-            <span>Node.js</span> <span>TypeScript</span> <span>Tailwind</span>
-            <span>Next.js</span> <span>PostgreSQL</span> <span>Git</span>
+          <div class="marquee-content gap-16 px-4">
+            <i
+              class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+              title="Java"
+            ></i>
+            <i
+              class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+              title="Spring Boot"
+            ></i>
+            <i
+              class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+              title="TypeScript"
+            ></i>
+            <i
+              class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+              title="Node.js"
+            ></i>
+            <i
+              class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+              title="React"
+            ></i>
+            <i
+              class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+              title="Docker"
+            ></i>
+            <i
+              class="devicon-git-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+              title="Git"
+            ></i>
+            <i
+              class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+              title="PostgreSQL"
+            ></i>
+            <i
+              class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+              title="NPM"
+            ></i>
+            <i
+              class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+              title="Tailwind"
+            ></i>
+
+            <i
+              class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-git-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+
+            <i
+              class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-git-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="projects" class="py-32 px-4 bg-surface/30">
-      <div class="max-w-7xl mx-auto">
-        <div
-          class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4"
-        >
-          <div>
-            <h2
-              class="text-display text-3xl md:text-4xl font-bold text-white mb-2"
-            >
-              Projetos Selecionados
-            </h2>
-            <p class="text-gray-400">Uma coleção do meu trabalho recente.</p>
-          </div>
-          <a
-            href="https://github.com/AndersonFreitasF"
-            target="_blank"
-            class="text-sm text-white hover:text-primary flex items-center gap-2 border-b border-white/20 pb-1 hover:border-primary transition-colors"
-          >
-            Ver GitHub Completo
-            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-          </a>
-        </div>
-
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          id="cards-container"
-        ></div>
       </div>
     </section>
 
@@ -366,20 +411,19 @@
               <div class="space-y-4 text-gray-400 leading-relaxed">
                 <p>
                   Minha história com código começou no ensino médio, onde tive
-                  meu primeiro contato com C em um curso técnico, e desde então
-                  sempre tive curiosidade pela área.
+                  meu primeiro contato com C em um curso técnico. Aquela tela
+                  preta do terminal me fascinou e definiu meu caminho.
                 </p>
                 <p>
-                  Hoje, transformei essa curiosidade em profissão. Sou
-                  especializado em <strong>Back-end</strong>, mas navego bem no
-                  Front. Nas horas vagas, provavelmente vou estar jogando ou
-                  brincando com meu gato.
+                  Sou especializado em <strong>Back-end</strong> (Node/Java),
+                  mas tenho forte base em Front-end. Meu objetivo é construir
+                  arquiteturas sólidas e escaláveis.
                 </p>
               </div>
             </div>
             <div class="mt-6 pt-6 border-t border-white/5">
               <p class="text-sm text-gray-500">
-                Localização: <span class="text-white">Brasil 🇧🇷</span>
+                Linguagens: <span class="text-white">Portugues, Ingles</span>
               </p>
             </div>
           </div>
@@ -419,7 +463,11 @@
             <div class="flex flex-wrap gap-3 relative z-10">
               <span
                 class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
-                >React</span
+                >Java</span
+              >
+              <span
+                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                >Spring</span
               >
               <span
                 class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
@@ -431,15 +479,19 @@
               >
               <span
                 class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                >Linux</span
+              >
+              <span
+                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
                 >Docker</span
               >
               <span
                 class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
-                >SQL</span
+                >PostgreSQL</span
               >
               <span
                 class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
-                >AWS</span
+                >Git</span
               >
             </div>
             <i
@@ -447,6 +499,121 @@
               class="absolute -bottom-4 -right-4 w-32 h-32 text-white/5 group-hover:text-white/10 transition-colors rotate-12"
             ></i>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="py-24 px-4 bg-surface/30">
+      <div class="max-w-4xl mx-auto">
+        <h2
+          class="text-display text-3xl md:text-5xl font-bold text-white mb-16 text-center"
+        >
+          Experiência Profissional
+        </h2>
+
+        <div class="relative border-l border-white/10 ml-4 md:ml-0 space-y-12">
+          <div class="mb-10 md:ml-12 ml-8 relative group">
+            <span
+              class="absolute -left-[41px] md:-left-[59px] top-1 w-5 h-5 bg-primary rounded-full timeline-dot group-hover:scale-125 transition-transform"
+            ></span>
+
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between mb-2"
+            >
+              <h3 class="text-xl font-bold text-white font-display">
+                Estagiário de Desenvolvimento
+              </h3>
+              <span
+                class="text-primary text-sm font-mono py-1 px-3 bg-primary/10 rounded-full border border-primary/20"
+                >Jan 2025 - Presente</span
+              >
+            </div>
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+              <span class="text-lg text-gray-300 font-medium">LIVSAÚDE</span>
+              <span class="text-gray-600">•</span>
+              <span class="text-sm text-gray-500">Fortaleza, Ceará</span>
+            </div>
+            <p class="text-gray-400 mb-4 leading-relaxed">
+              Atuação no desenvolvimento de software focado em saúde.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs text-gray-400 border border-white/10 px-2 py-1 rounded"
+                >Node.js</span
+              >
+              <span
+                class="text-xs text-gray-400 border border-white/10 px-2 py-1 rounded"
+                >TypeScript</span
+              >
+            </div>
+          </div>
+
+          <div class="mb-10 md:ml-12 ml-8 relative group">
+            <span
+              class="absolute -left-[41px] md:-left-[59px] top-1 w-5 h-5 bg-zinc-700 rounded-full border-4 border-background group-hover:bg-primary transition-colors"
+            ></span>
+
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between mb-2"
+            >
+              <h3 class="text-xl font-bold text-white font-display">
+                Desenvolvedor de Software (Aprendiz)
+              </h3>
+              <span class="text-gray-500 text-sm font-mono"
+                >Ago 2021 - Ago 2022</span
+              >
+            </div>
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+              <span class="text-lg text-gray-300 font-medium"
+                >A.M Informática Ltda</span
+              >
+              <span class="text-gray-600">•</span>
+              <span class="text-sm text-gray-500">Ceará, Brasil</span>
+            </div>
+            <p class="text-gray-400 mb-4 leading-relaxed">
+              Início da jornada profissional com foco em desenvolvimento desktop
+              e controle de versão.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs text-gray-400 border border-white/10 px-2 py-1 rounded"
+                >Java</span
+              >
+              <span
+                class="text-xs text-gray-400 border border-white/10 px-2 py-1 rounded"
+                >Git</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="py-32 px-4 relative">
+      <div class="max-w-7xl mx-auto text-center">
+        <h2
+          class="text-display text-3xl md:text-4xl font-bold text-white mb-12"
+        >
+          Projetos
+        </h2>
+
+        <div
+          class="border-2 border-dashed border-white/10 rounded-3xl p-16 flex flex-col items-center justify-center bg-white/5 hover:bg-white/10 transition-colors group"
+        >
+          <div
+            class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+          >
+            <i data-lucide="hammer" class="w-10 h-10 text-primary"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2 font-display">
+            Em Construção
+          </h3>
+          <p class="text-gray-400 max-w-md mx-auto">
+            Estou preparando alguns projetos incríveis para exibir aqui. Em
+            breve, você verá códigos em ação!
+          </p>
         </div>
       </div>
     </section>
@@ -479,7 +646,7 @@
                 type="text"
                 required
                 class="w-full bg-background border border-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-700"
-                placeholder="Anderson Freitas"
+                placeholder="Seu Nome"
               />
             </div>
             <div class="space-y-1">
@@ -491,7 +658,7 @@
                 type="email"
                 required
                 class="w-full bg-background border border-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-700"
-                placeholder="ola@email.com"
+                placeholder="seu@email.com"
               />
             </div>
           </div>
@@ -502,10 +669,9 @@
               >Mensagem</label
             >
             <textarea
-              rows="4"
               required
-              class="w-full bg-background border border-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-700"
-              placeholder="Como posso ajudar no seu projeto?"
+              class="w-full bg-background border border-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-700 resize-none h-32"
+              placeholder="Como posso ajudar?"
             ></textarea>
           </div>
 
@@ -591,24 +757,6 @@
           );
         }, 1500);
       }
-
-      window.onload = function () {
-        const container = document.getElementById("cards-container");
-        const cards = document.querySelectorAll(".spotlight-card");
-
-        if (container) {
-          container.onmousemove = (e) => {
-            for (const card of cards) {
-              const rect = card.getBoundingClientRect();
-              const x = e.clientX - rect.left;
-              const y = e.clientY - rect.top;
-
-              card.style.setProperty("--mouse-x", `${x}px`);
-              card.style.setProperty("--mouse-y", `${y}px`);
-            }
-          };
-        }
-      };
     </script>
   </body>
 </html>
