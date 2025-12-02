@@ -120,6 +120,49 @@
       .timeline-dot {
         box-shadow: 0 0 0 4px rgba(163, 230, 53, 0.2);
       }
+
+      #project-modal pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        color: #d4d4d8;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      #project-modal code {
+        color: #d4d4d8;
+      }
+
+      #project-modal code .keyword {
+        color: #c586c0;
+      }
+
+      #project-modal code .string {
+        color: #ce9178;
+      }
+
+      #project-modal code .function {
+        color: #dcdcaa;
+      }
+
+      #project-modal code .decorator {
+        color: #4ec9b0;
+      }
+
+      #project-modal code .class {
+        color: #4ec9b0;
+      }
+
+      #project-modal code .comment {
+        color: #6a9955;
+        font-style: italic;
+      }
+
+      #carousel-container {
+        display: flex;
+        overflow: hidden;
+      }
     </style>
   </head>
   <body class="antialiased selection:bg-primary selection:text-black">
@@ -598,7 +641,9 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div
-            class="bg-surface border border-white/5 rounded-3xl overflow-hidden hover:border-white/10 transition-colors group relative"
+            class="bg-surface border border-white/5 rounded-3xl overflow-hidden hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20 transition-all group relative cursor-pointer transform hover:scale-[1.02]"
+            onclick="openProjectModal('acad')"
+            title="Clique para ver mais imagens do projeto"
           >
             <div
               class="relative bg-black/40 p-6 flex items-center justify-center"
@@ -651,15 +696,13 @@
                   >
                     <i data-lucide="git-branch" class="w-5 h-5"></i>
                   </a>
-                  <a
-                    href="https://github.com/AndersonFreitasF/acad"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onclick="openProjectModal('acad')"
                     class="text-white/60 hover:text-white transition-colors"
                     title="Ver projeto"
                   >
                     <i data-lucide="external-link" class="w-5 h-5"></i>
-                  </a>
+                  </button>
                 </div>
               </div>
               <p class="text-gray-400 mb-6 leading-relaxed text-sm">
@@ -812,6 +855,69 @@
       <span>Mensagem enviada!</span>
     </div>
 
+    <div
+      id="project-modal"
+      class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300"
+      onclick="closeProjectModal(event)"
+    >
+      <div
+        class="bg-surface border border-white/10 rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl"
+        onclick="event.stopPropagation()"
+      >
+        <div
+          class="flex items-center justify-between p-6 border-b border-white/10"
+        >
+          <h3 class="text-2xl font-bold text-white font-display">
+            Sistema de Gestão de Academia Digital
+          </h3>
+          <div class="flex items-center gap-4">
+            <a
+              href="https://github.com/AndersonFreitasF/acad"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white/60 hover:text-white transition-colors"
+              title="Ver no GitHub"
+            >
+              <i data-lucide="github" class="w-6 h-6"></i>
+            </a>
+            <button
+              onclick="closeProjectModal()"
+              class="text-white/60 hover:text-white transition-colors"
+            >
+              <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-6">
+          <div id="project-carousel" class="relative overflow-hidden">
+            <div
+              id="carousel-container"
+              class="flex transition-transform duration-500 ease-in-out"
+              style="width: 100%"
+            ></div>
+
+            <button
+              id="prev-btn"
+              onclick="changeSlide(-1)"
+              class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-colors z-10"
+            >
+              <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <button
+              id="next-btn"
+              onclick="changeSlide(1)"
+              class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-colors z-10"
+            >
+              <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+          </div>
+
+          <div class="flex justify-center gap-2 mt-6" id="carousel-dots"></div>
+        </div>
+      </div>
+    </div>
+
     <script>
       lucide.createIcons();
 
@@ -855,6 +961,143 @@
           );
         }, 1500);
       }
+
+      let currentSlide = 0;
+      let slides = [];
+
+      const projectImages = {
+        acad: [
+          {
+            type: "image",
+            url: "https://i.imgur.com/xga1BuX.png",
+            alt: "Sistema de Gestão de Academia Digital",
+          },
+          {
+            type: "image",
+            url: "https://i.imgur.com/SATYHoz.png",
+            alt: "Interface do sistema",
+          },
+          {
+            type: "image",
+            url: "https://i.imgur.com/EULdgbA.png",
+            alt: "Funcionalidades do sistema",
+          },
+          {
+            type: "image",
+            url: "https://i.imgur.com/NxH2LdN.png",
+            alt: "Dashboard e visualizações",
+          },
+          {
+            type: "image",
+            url: "https://i.imgur.com/Nzjdes4.png",
+            alt: "Sistema de treinos",
+          },
+          {
+            type: "image",
+            url: "https://i.imgur.com/S9so43F.png",
+            alt: "Interface de gestão",
+          },
+        ],
+      };
+
+      function openProjectModal(projectId) {
+        const modal = document.getElementById("project-modal");
+        const container = document.getElementById("carousel-container");
+        const dotsContainer = document.getElementById("carousel-dots");
+
+        slides = projectImages[projectId] || [];
+        currentSlide = 0;
+
+        container.innerHTML = "";
+        dotsContainer.innerHTML = "";
+
+        slides.forEach((slide, index) => {
+          const slideDiv = document.createElement("div");
+          slideDiv.className =
+            "min-w-full flex-shrink-0 px-4 flex items-center justify-center";
+
+          slideDiv.innerHTML = `
+            <div class="rounded-xl overflow-hidden border border-white/10 w-full max-w-4xl">
+              <img
+                src="${slide.url}"
+                alt="${slide.alt}"
+                class="w-full h-auto object-contain"
+                loading="lazy"
+                onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'800\\' height=\\'600\\'%3E%3Crect fill=\\'%2318181b\\' width=\\'800\\' height=\\'600\\'/%3E%3Ctext x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dy=\\'.3em\\' fill=\\'%23666\\' font-family=\\'sans-serif\\' font-size=\\'20\\'%3EImagem não disponível%3C/text%3E%3C/svg%3E'"
+              />
+            </div>
+          `;
+
+          container.appendChild(slideDiv);
+
+          const dot = document.createElement("button");
+          dot.className = `w-2 h-2 rounded-full transition-all ${
+            index === 0 ? "bg-primary w-8" : "bg-white/20"
+          }`;
+          dot.onclick = () => goToSlide(index);
+          dotsContainer.appendChild(dot);
+        });
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        setTimeout(() => {
+          modal.classList.remove("opacity-0");
+        }, 10);
+        document.body.style.overflow = "hidden";
+
+        updateCarousel();
+        lucide.createIcons();
+      }
+
+      function closeProjectModal(event) {
+        if (event && event.target.id !== "project-modal") return;
+
+        const modal = document.getElementById("project-modal");
+        modal.classList.add("opacity-0");
+        setTimeout(() => {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+          document.body.style.overflow = "";
+        }, 300);
+      }
+
+      function changeSlide(direction) {
+        currentSlide += direction;
+        if (currentSlide < 0) currentSlide = slides.length - 1;
+        if (currentSlide >= slides.length) currentSlide = 0;
+        updateCarousel();
+      }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        updateCarousel();
+      }
+
+      function updateCarousel() {
+        const container = document.getElementById("carousel-container");
+        const dots = document.querySelectorAll("#carousel-dots button");
+
+        container.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        dots.forEach((dot, index) => {
+          if (index === currentSlide) {
+            dot.classList.add("bg-primary", "w-8");
+            dot.classList.remove("bg-white/20", "w-2");
+          } else {
+            dot.classList.remove("bg-primary", "w-8");
+            dot.classList.add("bg-white/20", "w-2");
+          }
+        });
+      }
+
+      document.addEventListener("keydown", (e) => {
+        const modal = document.getElementById("project-modal");
+        if (!modal.classList.contains("hidden")) {
+          if (e.key === "Escape") closeProjectModal();
+          if (e.key === "ArrowLeft") changeSlide(-1);
+          if (e.key === "ArrowRight") changeSlide(1);
+        }
+      });
     </script>
   </body>
 </html>
