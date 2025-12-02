@@ -755,7 +755,7 @@
               <div class="flex flex-wrap gap-2 justify-start">
                 <span
                   class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-600/90 border border-emerald-400/40 shadow-sm shadow-emerald-500/40"
-                  >NestJS</span
+                  >NodeJs</span
                 >
                 <span
                   class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-700/80 border border-emerald-400/40"
@@ -926,223 +926,193 @@
           </div>
         </div>
 
-        <div class="flex-1 overflow-y-auto p-6">
-          <div id="project-carousel" class="relative overflow-hidden">
-            <div
-              id="carousel-container"
-              class="flex transition-transform duration-500 ease-in-out"
-              style="width: 100%"
-            ></div>
+       <div class="flex-1 overflow-y-auto p-6">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <div class="lg:col-span-7 flex flex-col gap-4">
+      <div class="rounded-xl overflow-hidden border border-white/10 bg-black flex items-center justify-center min-h-[380px]">
+        <img id="project-main-image" src="" alt="" class="w-full h-full object-contain" />
+      </div>
 
-            <button
-              id="prev-btn"
-              onclick="changeSlide(-1)"
-              class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-colors z-10"
-            >
-              <i data-lucide="chevron-left" class="w-6 h-6"></i>
-            </button>
-            <button
-              id="next-btn"
-              onclick="changeSlide(1)"
-              class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-colors z-10"
-            >
-              <i data-lucide="chevron-right" class="w-6 h-6"></i>
-            </button>
-          </div>
+      <div id="project-thumbs" class="flex items-center gap-3 overflow-x-auto pt-2"></div>
 
-          <div class="flex justify-center gap-2 mt-6" id="carousel-dots"></div>
-        </div>
+      <div class="flex items-center gap-3 mt-2">
+        <button id="prev-btn-new" class="inline-flex items-center justify-center p-3 rounded-full bg-black/60 text-white">◀</button>
+        <button id="next-btn-new" class="inline-flex items-center justify-center p-3 rounded-full bg-black/60 text-white">▶</button>
+        <div id="image-counter" class="ml-auto text-sm text-gray-400"></div>
       </div>
     </div>
 
-    <script>
-      lucide.createIcons();
+    <div class="lg:col-span-5 flex flex-col gap-4">
+      <p id="project-category" class="text-xs uppercase tracking-[0.25em] text-primary"></p>
+      <h4 id="project-short-title" class="text-xl font-bold text-white"></h4>
+      <p id="project-description" class="text-gray-400 leading-relaxed text-sm"></p>
 
-      const mobileMenu = document.getElementById("mobile-menu");
-      function toggleMenu() {
-        const isHidden = mobileMenu.classList.contains("hidden");
-        if (isHidden) {
-          mobileMenu.classList.remove("hidden");
-          setTimeout(() => mobileMenu.classList.remove("opacity-0"), 10);
-          document.body.style.overflow = "hidden";
-        } else {
-          mobileMenu.classList.add("opacity-0");
-          setTimeout(() => {
-            mobileMenu.classList.add("hidden");
-            document.body.style.overflow = "";
-          }, 300);
-        }
-      }
-      document
-        .getElementById("mobile-menu-btn")
-        .addEventListener("click", toggleMenu);
+      <div id="project-tags" class="flex flex-wrap gap-2"></div>
 
-      function handleForm(e) {
-        e.preventDefault();
-        const btn = e.target.querySelector("button");
-        const originalContent = btn.innerHTML;
+      <div class="mt-2">
+        <h5 class="text-sm text-gray-400 mb-2">Desafios técnicos</h5>
+        <ul id="project-challenges" class="text-sm text-gray-300 list-disc ml-5 space-y-1"></ul>
+      </div>
 
-        btn.innerHTML = "Enviando...";
-        btn.classList.add("opacity-70", "cursor-not-allowed");
+      <div class="mt-auto flex gap-3">
+        <a id="project-live-btn" href="#" target="_blank" class="px-6 py-3 bg-primary text-black rounded-full font-semibold inline-flex items-center gap-2">Projeto no ar</a>
+        <a id="project-repo-btn" href="#" target="_blank" class="px-4 py-3 border border-white/10 rounded-lg inline-flex items-center gap-2 text-white/70">Repositório</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-        setTimeout(() => {
-          e.target.reset();
-          btn.innerHTML = originalContent;
-          btn.classList.remove("opacity-70", "cursor-not-allowed");
+   <script>
+  lucide.createIcons();
 
-          const toast = document.getElementById("toast");
-          toast.classList.remove("translate-y-20", "opacity-0");
-          setTimeout(
-            () => toast.classList.add("translate-y-20", "opacity-0"),
-            3000
-          );
-        }, 1500);
-      }
+  const mobileMenu = document.getElementById("mobile-menu");
+  function toggleMenu() {
+    const isHidden = mobileMenu.classList.contains("hidden");
+    if (isHidden) {
+      mobileMenu.classList.remove("hidden");
+      setTimeout(() => mobileMenu.classList.remove("opacity-0"), 10);
+      document.body.style.overflow = "hidden";
+    } else {
+      mobileMenu.classList.add("opacity-0");
+      setTimeout(() => {
+        mobileMenu.classList.add("hidden");
+        document.body.style.overflow = "";
+      }, 300);
+    }
+  }
+  document
+    .getElementById("mobile-menu-btn")
+    .addEventListener("click", toggleMenu);
 
-      let currentSlide = 0;
-      let slides = [];
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector("button");
+    const originalContent = btn.innerHTML;
 
-      const projectImages = {
-        acad: [
-          {
-            type: "image",
-            url: "https://i.imgur.com/xga1BuX.png",
-            alt: "Sistema de Gestão de Academia Digital",
-          },
-          {
-            type: "image",
-            url: "https://i.imgur.com/SATYHoz.png",
-            alt: "Interface do sistema",
-          },
-          {
-            type: "image",
-            url: "https://i.imgur.com/EULdgbA.png",
-            alt: "Funcionalidades do sistema",
-          },
-          {
-            type: "image",
-            url: "https://i.imgur.com/NxH2LdN.png",
-            alt: "Dashboard e visualizações",
-          },
-          {
-            type: "image",
-            url: "https://i.imgur.com/Nzjdes4.png",
-            alt: "Sistema de treinos",
-          },
-          {
-            type: "image",
-            url: "https://i.imgur.com/S9so43F.png",
-            alt: "Interface de gestão",
-          },
-        ],
+    btn.innerHTML = "Enviando...";
+    btn.classList.add("opacity-70", "cursor-not-allowed");
+
+    setTimeout(() => {
+      e.target.reset();
+      btn.innerHTML = originalContent;
+      btn.classList.remove("opacity-70", "cursor-not-allowed");
+
+      const toast = document.getElementById("toast");
+      toast.classList.remove("translate-y-20", "opacity-0");
+      setTimeout(
+        () => toast.classList.add("translate-y-20", "opacity-0"),
+        3000
+      );
+    }, 1500);
+  }
+
+  let currentSlide = 0;
+  let slides = [];
+
+
+  const projectImages = {
+    acad: [
+      { url: "https://i.imgur.com/xga1BuX.png", alt: "Academia" },
+      { url: "https://i.imgur.com/SATYHoz.png", alt: "Academia" },
+      { url: "https://i.imgur.com/EULdgbA.png", alt: "Academia" },
+      { url: "https://i.imgur.com/NxH2LdN.png", alt: "Academia" },
+      { url: "https://i.imgur.com/Nzjdes4.png", alt: "Academia" },
+      { url: "https://i.imgur.com/S9so43F.png", alt: "Academia" }
+    ]
+  };
+
+  const projectChallenges = {
+  acad: [
+    "Integração completa entre módulos",
+    "Fluxo de usuarios dinâmico",
+    "Interface responsiva com UX consistente",
+    "Organização modular e otimizada",
+    "Primeiro Projeto fullstack"
+  ]
+};
+
+  function openProjectModal(projectId) {
+    const modal = document.getElementById("project-modal");
+
+    slides = projectImages[projectId] || [];
+    currentSlide = 0;
+
+    updateNewModalContent();
+
+    const challengesBox = document.getElementById("project-challenges");
+challengesBox.innerHTML = "";
+
+(projectChallenges[projectId] || []).forEach(item => {
+  const li = document.createElement("li");
+  li.textContent = item;
+  challengesBox.appendChild(li);
+});
+
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    setTimeout(() => modal.classList.remove("opacity-0"), 10);
+    document.body.style.overflow = "hidden";
+
+    lucide.createIcons();
+  }
+
+  function updateNewModalContent() {
+    const main = document.getElementById("project-main-image");
+    const thumbs = document.getElementById("project-thumbs");
+    const counter = document.getElementById("image-counter");
+
+    thumbs.innerHTML = "";
+
+    slides.forEach((slide, index) => {
+      const btn = document.createElement("button");
+      btn.className =
+        "rounded-md overflow-hidden border border-white/10 w-24 h-16 flex-shrink-0";
+      btn.onclick = () => {
+        currentSlide = index;
+        updateNewModalContent();
       };
 
-      function openProjectModal(projectId) {
-        const modal = document.getElementById("project-modal");
-        const container = document.getElementById("carousel-container");
-        const dotsContainer = document.getElementById("carousel-dots");
+      btn.innerHTML = `<img src="${slide.url}" class="w-full h-full object-cover"/>`;
+      thumbs.appendChild(btn);
+    });
 
-        slides = projectImages[projectId] || [];
-        currentSlide = 0;
+    if (slides.length) {
+      main.src = slides[currentSlide].url;
+      counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+    }
+  }
 
-        container.innerHTML = "";
-        dotsContainer.innerHTML = "";
+  document.getElementById("prev-btn-new").onclick = () => {
+    currentSlide =
+      (currentSlide - 1 + slides.length) % slides.length;
+    updateNewModalContent();
+  };
 
-        slides.forEach((slide, index) => {
-          const slideDiv = document.createElement("div");
-          slideDiv.className =
-            "carousel-slide w-full flex-shrink-0 px-4 flex items-center justify-center";
+  document.getElementById("next-btn-new").onclick = () => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateNewModalContent();
+  };
 
-          slideDiv.innerHTML = `
-            <div class="rounded-xl overflow-hidden border border-white/10 w-full max-w-4xl">
-              <img
-                src="${slide.url}"
-                alt="${slide.alt}"
-                class="w-full h-auto object-contain"
-                loading="lazy"
-                onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'800\\' height=\\'600\\'%3E%3Crect fill=\\'%2318181b\\' width=\\'800\\' height=\\'600\\'/%3E%3Ctext x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dy=\\'.3em\\' fill=\\'%23666\\' font-family=\\'sans-serif\\' font-size=\\'20\\'%3EImagem não disponível%3C/text%3E%3C/svg%3E'"
-              />
-            </div>
-          `;
+  function closeProjectModal(event) {
+    const modal = document.getElementById("project-modal");
+    modal.classList.add("opacity-0");
 
-          container.appendChild(slideDiv);
+    setTimeout(() => {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }, 300);
+  }
 
-          const dot = document.createElement("button");
-          dot.className = `w-2 h-2 rounded-full transition-all ${
-            index === 0 ? "bg-primary w-8" : "bg-white/20"
-          }`;
-          dot.onclick = () => goToSlide(index);
-          dotsContainer.appendChild(dot);
-        });
-
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-        setTimeout(() => {
-          modal.classList.remove("opacity-0");
-        }, 10);
-        document.body.style.overflow = "hidden";
-
-        updateCarousel();
-        lucide.createIcons();
-      }
-
-      function closeProjectModal(event) {
-        if (event && event.target.id !== "project-modal") return;
-
-        const modal = document.getElementById("project-modal");
-        modal.classList.add("opacity-0");
-        setTimeout(() => {
-          modal.classList.add("hidden");
-          modal.classList.remove("flex");
-          document.body.style.overflow = "";
-        }, 300);
-      }
-
-      function changeSlide(direction) {
-        currentSlide += direction;
-        if (currentSlide < 0) currentSlide = slides.length - 1;
-        if (currentSlide >= slides.length) currentSlide = 0;
-        updateCarousel();
-      }
-
-      function goToSlide(index) {
-        currentSlide = index;
-        updateCarousel();
-      }
-
-      function updateCarousel() {
-        const container = document.getElementById("carousel-container");
-        const dots = document.querySelectorAll("#carousel-dots button");
-
-        const slideElements = container.querySelectorAll(".carousel-slide");
-
-        slideElements.forEach((slide, index) => {
-          if (index === currentSlide) {
-            slide.classList.remove("hidden");
-          } else {
-            slide.classList.add("hidden");
-          }
-        });
-
-        dots.forEach((dot, index) => {
-          if (index === currentSlide) {
-            dot.classList.add("bg-primary", "w-8");
-            dot.classList.remove("bg-white/20", "w-2");
-          } else {
-            dot.classList.remove("bg-primary", "w-8");
-            dot.classList.add("bg-white/20", "w-2");
-          }
-        });
-      }
-
-      document.addEventListener("keydown", (e) => {
-        const modal = document.getElementById("project-modal");
-        if (!modal.classList.contains("hidden")) {
-          if (e.key === "Escape") closeProjectModal();
-          if (e.key === "ArrowLeft") changeSlide(-1);
-          if (e.key === "ArrowRight") changeSlide(1);
-        }
-      });
-    </script>
+  document.addEventListener("keydown", (e) => {
+    const modal = document.getElementById("project-modal");
+    if (!modal.classList.contains("hidden")) {
+      if (e.key === "Escape") closeProjectModal();
+      if (e.key === "ArrowLeft") currentSlide--, updateNewModalContent();
+      if (e.key === "ArrowRight") currentSlide++, updateNewModalContent();
+    }
+  });
+</script>
   </body>
 </html>
