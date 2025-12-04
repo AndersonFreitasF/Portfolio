@@ -163,6 +163,14 @@
         display: flex;
         overflow: hidden;
       }
+      
+      .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+      }
+      .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
     </style>
   </head>
   <body class="antialiased selection:bg-primary selection:text-black">
@@ -356,37 +364,6 @@
             <i
               class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
               title="Tailwind"
-            ></i>
-
-            <i
-              class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-git-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
             ></i>
 
             <i
@@ -929,41 +906,51 @@ E, sempre que posso, compartilho o que aprendo pra ajudar outros devs.</p>
         </div>
 
        <div class="flex-1 overflow-y-auto p-6">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start h-full">
+    
     <div class="lg:col-span-7 flex flex-col gap-4">
-      <div class="rounded-xl overflow-hidden border border-white/10 bg-black flex items-center justify-center min-h-[380px]">
-        <img id="project-main-image" src="" alt="" class="w-full h-full object-contain" />
+      <div class="rounded-xl overflow-hidden border border-white/10 bg-black/50 flex items-center justify-center min-h-[380px] relative group">
+        <img id="project-main-image" src="" alt="" class="w-full h-full object-contain max-h-[500px]" />
+        
+        <button id="prev-btn-new" class="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-primary hover:text-black transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm z-20">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </button>
+        
+        <button id="next-btn-new" class="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-primary hover:text-black transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm z-20">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+
+        <div id="image-counter" class="absolute bottom-4 right-4 text-xs font-mono text-white bg-black/70 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10"></div>
       </div>
 
-      <div id="project-thumbs" class="flex items-center gap-3 overflow-x-auto pt-2"></div>
-
-      <div class="flex items-center gap-3 mt-2">
-        <button id="prev-btn-new" class="inline-flex items-center justify-center p-3 rounded-full bg-black/60 text-white">◀</button>
-        <button id="next-btn-new" class="inline-flex items-center justify-center p-3 rounded-full bg-black/60 text-white">▶</button>
-        <div id="image-counter" class="ml-auto text-sm text-gray-400"></div>
+      <div class="flex flex-col gap-3">
+        <div id="project-thumbs" class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
+        </div>
       </div>
     </div>
 
-    <div class="lg:col-span-5 flex flex-col gap-4">
-      <p id="project-category" class="text-xs uppercase tracking-[0.25em] text-primary"></p>
-      <h4 id="project-short-title" class="text-xl font-bold text-white"></h4>
-      <p id="project-description" class="text-gray-400 leading-relaxed text-sm"></p>
-
-      <div id="project-tags" class="flex flex-wrap gap-2"></div>
-
-      <div class="mt-2">
-        <h5 class="text-sm text-gray-400 mb-2">Desafios técnicos</h5>
+    <div class="lg:col-span-5 flex flex-col gap-4 h-full justify-start">
+      
+      <div class="mt-0"> 
+        <h5 class="text-sm text-gray-400 mb-2 font-semibold uppercase tracking-wider">Desafios técnicos</h5>
         <ul id="project-challenges" class="text-sm text-gray-300 list-disc ml-5 space-y-1"></ul>
       </div>
 
       <div class="mt-4">
-        <h5 class="text-sm text-gray-400 mb-2">Aprendizados</h5>
+        <h5 class="text-sm text-gray-400 mb-2 font-semibold uppercase tracking-wider">Aprendizados</h5>
         <ul id="project-learnings" class="text-sm text-gray-300 list-disc ml-5 space-y-1"></ul>
       </div>
 
-      <div class="mt-auto flex gap-3">
-        <a id="project-live-btn" href="#" target="_blank" class="px-6 py-3 bg-primary text-black rounded-full font-semibold inline-flex items-center gap-2">Projeto no ar</a>
-        <a id="project-repo-btn" href="https://github.com/AndersonFreitasF/acad" target="_blank" rel="noopener noreferrer" class="px-4 py-3 border border-white/10 rounded-lg inline-flex items-center gap-2 text-white/70" title="Repositório">Repositório</a>
+      <div class="hidden">
+        <p id="project-category"></p>
+        <h4 id="project-short-title"></h4>
+        <p id="project-description"></p>
+        <div id="project-tags"></div>
+      </div>
+
+      <div class="mt-8 grid grid-cols-2 gap-4 pt-6">
+        <a id="project-live-btn" href="#" target="_blank" class="w-full justify-center px-6 py-3 bg-primary text-black rounded-full font-semibold inline-flex items-center gap-2 hover:bg-secondary transition-colors">Projeto no ar</a>
+        <a id="project-repo-btn" href="https://github.com/AndersonFreitasF/acad" target="_blank" rel="noopener noreferrer" class="w-full justify-center px-4 py-3 border border-white/10 rounded-lg inline-flex items-center gap-2 text-white/70 hover:text-white hover:bg-white/5 transition-colors" title="Repositório">Repositório</a>
       </div>
     </div>
   </div>
@@ -1057,13 +1044,13 @@ const projectLearnings = {
     updateNewModalContent();
 
     const challengesBox = document.getElementById("project-challenges");
-challengesBox.innerHTML = "";
+    challengesBox.innerHTML = "";
 
-(projectChallenges[projectId] || []).forEach(item => {
-  const li = document.createElement("li");
-  li.textContent = item;
-  challengesBox.appendChild(li);
-});
+    (projectChallenges[projectId] || []).forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      challengesBox.appendChild(li);
+    });
 
     const learningsBox = document.getElementById("project-learnings");
     if (learningsBox) {
@@ -1075,12 +1062,11 @@ challengesBox.innerHTML = "";
       });
     }
 
-
     modal.classList.remove("hidden");
     modal.classList.add("flex");
     setTimeout(() => modal.classList.remove("opacity-0"), 10);
     document.body.style.overflow = "hidden";
-
+    
     lucide.createIcons();
   }
 
@@ -1093,19 +1079,34 @@ challengesBox.innerHTML = "";
 
     slides.forEach((slide, index) => {
       const btn = document.createElement("button");
-      btn.className =
-        "rounded-md overflow-hidden border border-white/10 w-24 h-16 flex-shrink-0";
+      const isSelected = index === currentSlide;
+
+      let className = "relative rounded-lg overflow-hidden h-16 w-24 flex-shrink-0 transition-all duration-300 border border-white/10 ";
+
+      if (isSelected) {
+        className += "opacity-100 ring-2 ring-primary scale-105 z-10";
+      } else {
+        className += "opacity-30 grayscale hover:opacity-100 hover:grayscale-0 hover:scale-105";
+      }
+
+      btn.className = className;
+      
       btn.onclick = () => {
         currentSlide = index;
         updateNewModalContent();
       };
 
-      btn.innerHTML = `<img src="${slide.url}" class="w-full h-full object-cover"/>`;
+      btn.innerHTML = `<img src="${slide.url}" class="w-full h-full object-cover" alt="Thumbnail ${index + 1}"/>`;
       thumbs.appendChild(btn);
     });
 
     if (slides.length) {
-      main.src = slides[currentSlide].url;
+      main.style.opacity = "0.5"; 
+      setTimeout(() => {
+          main.src = slides[currentSlide].url;
+          main.style.opacity = "1";
+      }, 150);
+      
       counter.textContent = `${currentSlide + 1} / ${slides.length}`;
     }
   }
