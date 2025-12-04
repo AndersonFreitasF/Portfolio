@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Seu Nome | Sua Profissão</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,6 +24,7 @@
     />
 
     <script>
+      // [CONFIGURAÇÃO DO TEMA]
       tailwind.config = {
         darkMode: "class",
         theme: {
@@ -31,13 +33,15 @@
               sans: ["Inter", "sans-serif"],
               display: ["Space Grotesk", "sans-serif"],
             },
+            // [EDITE AQUI AS CORES]:
+            // Mude o código Hex (#a3e635) de 'primary' para alterar a cor principal do site (o verde atual).
             colors: {
-              background: "#09090b",
-              surface: "#18181b",
-              border: "#27272a",
-              primary: "#a3e635",
-              secondary: "#ecfccb",
-            }, // Edite aqui encima para escolher as cores da sua preferencia
+              background: "#09090b", // Cor de fundo do site (quase preto)
+              surface: "#18181b", // Cor dos cartões e fundos secundários
+              border: "#27272a", // Cor das bordas finas
+              primary: "#a3e635", // COR DE DESTAQUE (Verde Limão) - Mude aqui!
+              secondary: "#ecfccb", // Cor secundária (Verde claro)
+            },
             backgroundImage: {
               "grid-pattern":
                 "linear-gradient(to right, #27272a 1px, transparent 1px), linear-gradient(to bottom, #27272a 1px, transparent 1px)",
@@ -48,12 +52,14 @@
     </script>
 
     <style>
+      /* --- Estilos Globais Personalizados --- */
       body {
-        background-color: #09090b;
+        background-color: #09090b; /* Deve combinar com a cor 'background' acima */
         color: #f4f4f5;
         overflow-x: hidden;
       }
 
+      /* Efeito de granulado (Noise) sobre a tela - Dá textura ao site */
       .noise-overlay {
         position: fixed;
         top: 0;
@@ -62,10 +68,11 @@
         height: 100%;
         pointer-events: none;
         z-index: 50;
-        opacity: 0.03;
+        opacity: 0.03; /* Aumente para mais textura, diminua para menos */
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
       }
 
+      /* Personalização da barra de rolagem (Scrollbar) */
       ::-webkit-scrollbar {
         width: 6px;
         height: 8px;
@@ -81,6 +88,7 @@
         background: #3f3f46;
       }
 
+      /* Efeito de vidro na barra de navegação */
       .glass-nav {
         background: rgba(9, 9, 11, 0.6);
         backdrop-filter: blur(12px);
@@ -91,17 +99,11 @@
         font-family: "Space Grotesk", sans-serif;
       }
 
-      .spotlight-card {
-        position: relative;
-        background: #18181b;
-        overflow: hidden;
-      }
-
       .timeline-dot {
-        box-shadow: 0 0 0 4px rgba(163, 230, 53, 0.2);
+        box-shadow: 0 0 0 4px rgba(163, 230, 53, 0.2); /* Sombra verde no ponto da timeline */
       }
 
-      /* --- estilo da barra que fica passando as tecnologias(marquee) --- */
+      /* --- CONFIGURAÇÃO DA ANIMAÇÃO DO MARQUEE (Faixa de Ícones) --- */
       .marquee-container {
         overflow: hidden;
         white-space: nowrap;
@@ -109,6 +111,7 @@
       }
       .marquee-content {
         display: inline-flex;
+        /* [EDITE AQUI]: Velocidade da animação. Mude '40s' para mais ou menos tempo. */
         animation: scroll 40s linear infinite;
         will-change: transform;
         transform: translateZ(0);
@@ -119,6 +122,7 @@
           transform: translateX(0);
         }
         to {
+          /* Move a faixa exatamente 50% para a esquerda */
           transform: translateX(-50%);
         }
       }
@@ -241,10 +245,11 @@
             >NOME</span
           >
         </h1>
+
         <p
           class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto leading-relaxed"
         >
-          Sua Profissão ou Especialidade.
+          Sua Profissão ou Especialidade. Transformando ideias em realidade.
         </p>
 
         <div
@@ -306,14 +311,6 @@
               class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
               title="PostgreSQL"
             ></i>
-            <i
-              class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-              title="NPM"
-            ></i>
-            <i
-              class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-              title="Tailwind"
-            ></i>
 
             <i
               class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
@@ -339,47 +336,18 @@
             <i
               class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
             ></i>
-            <i
-              class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
 
             <i
               class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
             ></i>
             <i
               class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-git-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
             ></i>
           </div>
         </div>
       </div>
     </section>
+
     <section id="about" class="py-24 px-4 relative">
       <div class="max-w-7xl mx-auto">
         <h2
@@ -403,21 +371,17 @@
               <h3 class="text-2xl font-bold text-white mb-4 font-display">
                 A Jornada
               </h3>
+
               <div class="space-y-4 text-gray-400 leading-relaxed">
+                <p>[Parágrafo 1]: Escreva sobre como você começou.</p>
+                <p>[Parágrafo 2]: Escreva sobre o que você faz hoje.</p>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <p>
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <p>
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore eu fugiat nulla pariatur.
+                  [Parágrafo 3]: Escreva sobre seus hobbies ou objetivos
+                  futuros.
                 </p>
               </div>
             </div>
+
             <div class="mt-6 pt-6 border-t border-white/5">
               <p class="text-sm text-gray-500">
                 Linguagens: <span class="text-white">Português, Inglês</span>
@@ -436,14 +400,15 @@
               class="w-10 h-10 text-primary mb-4 group-hover:-translate-y-1 transition-transform"
             ></i>
             <h4 class="text-white font-bold mb-1">Formação</h4>
+
             <p class="text-sm font-semibold text-white">Nome do Curso</p>
-            <p class="text-xs text-gray-500 mt-1">Instituição</p>
+            <p class="text-xs text-gray-500 mt-1">Instituição de Ensino</p>
           </div>
 
           <div
             class="md:col-span-1 md:row-span-1 bg-primary text-black rounded-3xl p-6 flex flex-col justify-center items-center text-center"
           >
-            <h4 class="text-5xl font-bold font-display mb-1">X+</h4>
+            <h4 class="text-5xl font-bold font-display mb-1">2+</h4>
             <p class="text-sm font-semibold opacity-80">Anos de Experiência</p>
           </div>
 
@@ -455,6 +420,7 @@
             >
               Stack Principal
             </h3>
+
             <div class="flex flex-wrap gap-3 relative z-10">
               <span
                 class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
@@ -473,6 +439,7 @@
                 >Tech 4</span
               >
             </div>
+
             <i
               data-lucide="code-2"
               class="absolute -bottom-4 -right-4 w-32 h-32 text-white/5 group-hover:text-white/10 transition-colors rotate-12"
@@ -515,9 +482,11 @@
               <span class="text-gray-600">•</span>
               <span class="text-sm text-gray-500">Cidade, Estado</span>
             </div>
+
             <p class="text-gray-400 mb-4 leading-relaxed">
-              Descrição das atividades realizadas.
+              Descrição detalhada das atividades realizadas nesta empresa.
             </p>
+
             <div class="flex flex-wrap gap-2">
               <span
                 class="text-xs text-gray-400 border border-white/10 px-2 py-1 rounded"
@@ -554,7 +523,7 @@
               <span class="text-sm text-gray-500">Localização</span>
             </div>
             <p class="text-gray-400 mb-4 leading-relaxed">
-              Descrição das atividades.
+              Descrição das atividades realizadas.
             </p>
             <div class="flex flex-wrap gap-2">
               <span
@@ -597,7 +566,7 @@
                     <span
                       class="ml-3 text-[11px] uppercase tracking-[0.18em] text-gray-500"
                     >
-                      Projeto
+                      Destaque
                     </span>
                   </div>
 
@@ -611,7 +580,7 @@
                     </div>
                     <div class="flex gap-2 pl-4 text-gray-500">
                       <span>//</span>
-                      <span>Breve descrição</span>
+                      <span>Breve descrição de uma linha</span>
                     </div>
                   </div>
                 </div>
@@ -645,6 +614,7 @@
                     Nome do Projeto
                   </h3>
                 </div>
+
                 <div class="flex flex-col items-end gap-2">
                   <button
                     class="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 text-[11px] font-medium text-gray-300 bg-white/5 group-hover:bg-white/10 transition-colors"
@@ -652,8 +622,9 @@
                     <span
                       class="w-1.5 h-1.5 rounded-full bg-emerald-400"
                     ></span>
-                    <span>Status</span>
+                    <span>Concluído</span>
                   </button>
+
                   <div class="flex items-center gap-2 text-sm">
                     <a
                       href="#"
@@ -819,7 +790,6 @@
           >
             Nome do Projeto
           </h3>
-
           <div class="flex items-center gap-4">
             <a
               id="modal-github-link"
@@ -853,27 +823,23 @@
                   alt=""
                   class="w-full h-full object-contain max-h-[500px]"
                 />
-
                 <button
                   id="prev-btn-new"
                   class="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-primary hover:text-black transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm z-20"
                 >
                   <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
-
                 <button
                   id="next-btn-new"
                   class="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-primary hover:text-black transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm z-20"
                 >
                   <i data-lucide="chevron-right" class="w-6 h-6"></i>
                 </button>
-
                 <div
                   id="image-counter"
                   class="absolute bottom-4 right-4 text-xs font-mono text-white bg-black/70 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10"
                 ></div>
               </div>
-
               <div class="flex flex-col gap-3">
                 <div
                   id="project-thumbs"
@@ -894,7 +860,6 @@
                   class="text-sm text-gray-300 list-disc ml-5 space-y-1"
                 ></ul>
               </div>
-
               <div class="mt-4">
                 <h5
                   class="text-sm text-gray-400 mb-2 font-semibold uppercase tracking-wider"
@@ -906,12 +871,10 @@
                   class="text-sm text-gray-300 list-disc ml-5 space-y-1"
                 ></ul>
               </div>
-
               <p
                 id="project-description"
                 class="text-gray-400 leading-relaxed text-sm hidden"
               ></p>
-
               <div class="mt-8 grid grid-cols-2 gap-4 pt-6">
                 <a
                   id="project-live-btn"
@@ -937,8 +900,10 @@
     </div>
 
     <script>
+      // Inicializa os ícones do Lucide
       lucide.createIcons();
 
+      // [Lógica do Menu Mobile]
       const mobileMenu = document.getElementById("mobile-menu");
       function toggleMenu() {
         const isHidden = mobileMenu.classList.contains("hidden");
@@ -958,19 +923,17 @@
         .getElementById("mobile-menu-btn")
         .addEventListener("click", toggleMenu);
 
+      // [Simulação de Envio de Formulário]
       function handleForm(e) {
         e.preventDefault();
         const btn = e.target.querySelector("button");
         const originalContent = btn.innerHTML;
-
         btn.innerHTML = "Enviando...";
         btn.classList.add("opacity-70", "cursor-not-allowed");
-
         setTimeout(() => {
           e.target.reset();
           btn.innerHTML = originalContent;
           btn.classList.remove("opacity-70", "cursor-not-allowed");
-
           const toast = document.getElementById("toast");
           toast.classList.remove("translate-y-20", "opacity-0");
           setTimeout(
@@ -980,54 +943,65 @@
         }, 1500);
       }
 
-      // --- CONFIGURAÇÃO DOS PROJETOS ---
+      // -----------------------------------------------------------------------
+      // [CONFIGURAÇÃO DOS PROJETOS] - EDITE ABAIXO
+      // -----------------------------------------------------------------------
+      // Aqui você define o que aparece no Modal quando clica no projeto.
+      // O ID ('project1') deve ser o mesmo usado no HTML: onclick="openProjectModal('project1')"
 
-      // [EDITAR]: IDs e Imagens dos Projetos
+      // 1. IMAGENS DO CARROSSEL
       const projectImages = {
         project1: [
+          // ID do projeto 1
           {
             url: "https://placehold.co/800x500/18181b/FFF?text=Imagem+1",
-            alt: "Tela 1",
+            alt: "Tela Principal do Sistema",
           },
           {
             url: "https://placehold.co/800x500/222/FFF?text=Tela+2",
-            alt: "Tela 2",
+            alt: "Tela de Login",
           },
           {
             url: "https://placehold.co/800x500/333/FFF?text=Mobile",
-            alt: "Tela Mobile",
+            alt: "Versão Mobile",
           },
         ],
+        // Para adicionar outro projeto, coloque uma vírgula acima e copie a estrutura:
+        // project2: [ ... ],
       };
 
-      // [EDITAR]: Desafios Técnicos
+      // 2. LISTA DE DESAFIOS TÉCNICOS (Bullet points)
       const projectChallenges = {
         project1: [
-          "Desafio técnico genérico 1",
-          "Integração com API externa",
-          "Responsividade complexa",
-          "Otimização de performance",
+          "Exemplo: Integração com API de pagamentos complexa",
+          "Exemplo: Garantir performance com muitos dados",
+          "Exemplo: Criar design responsivo do zero",
         ],
       };
 
-      // [EDITAR]: Aprendizados
+      // 3. LISTA DE APRENDIZADOS (Bullet points)
       const projectLearnings = {
         project1: [
-          "Aprendizado sobre arquitetura limpa",
-          "Gerenciamento de estado avançado",
-          "Uso de Docker para deploy",
+          "Aprendi a utilizar Docker em produção",
+          "Melhorei meus conhecimentos em React Hooks",
+          "Entendi melhor sobre arquitetura de software",
         ],
       };
 
-      // [EDITAR]: Informações de Título e Links
+      // 4. LINKS E TÍTULOS
       const projectInfo = {
         project1: {
-          title: "Nome do Projeto 1",
-          repoUrl: "#",
-          liveUrl: "#",
-          description: "Descrição detalhada opcional que aparece no modal.",
+          title: "Nome Completo do Projeto 1", // Título no topo do modal
+          repoUrl: "https://github.com/seusite", // Link do GitHub
+          liveUrl: "https://seusite.com", // Link do site rodando
+          description:
+            "Uma descrição mais longa e detalhada sobre o projeto, suas funcionalidades e impacto.",
         },
       };
+
+      // -----------------------------------------------------------------------
+      // [LÓGICA DO MODAL] - (Geralmente não precisa mexer aqui)
+      // -----------------------------------------------------------------------
 
       let currentSlide = 0;
       let slides = [];
@@ -1036,18 +1010,16 @@
       function openProjectModal(projectId) {
         const modal = document.getElementById("project-modal");
         currentProjectId = projectId;
-
         slides = projectImages[projectId] || [];
         currentSlide = 0;
 
-        // Atualiza Textos Dinâmicos
+        // Preenche textos
         const info = projectInfo[projectId];
         if (info) {
           document.getElementById("modal-title").innerText = info.title;
           document.getElementById("modal-github-link").href = info.repoUrl;
           document.getElementById("project-repo-btn").href = info.repoUrl;
           document.getElementById("project-live-btn").href = info.liveUrl;
-
           const descEl = document.getElementById("project-description");
           if (info.description) {
             descEl.innerText = info.description;
@@ -1059,6 +1031,7 @@
 
         updateNewModalContent();
 
+        // Preenche listas
         const challengesBox = document.getElementById("project-challenges");
         challengesBox.innerHTML = "";
         (projectChallenges[projectId] || []).forEach((item) => {
@@ -1080,8 +1053,7 @@
         modal.classList.remove("hidden");
         modal.classList.add("flex");
         setTimeout(() => modal.classList.remove("opacity-0"), 10);
-        document.body.style.overflow = "hidden";
-
+        document.body.style.overflow = "hidden"; // Trava o scroll do fundo
         lucide.createIcons();
       }
 
@@ -1089,31 +1061,24 @@
         const main = document.getElementById("project-main-image");
         const thumbs = document.getElementById("project-thumbs");
         const counter = document.getElementById("image-counter");
-
         thumbs.innerHTML = "";
 
         slides.forEach((slide, index) => {
           const btn = document.createElement("button");
           const isSelected = index === currentSlide;
-
-          // Miniaturas Sombreadas
           let className =
             "relative rounded-lg overflow-hidden h-16 w-24 flex-shrink-0 transition-all duration-300 border border-white/10 ";
-
           if (isSelected) {
             className += "opacity-100 ring-2 ring-primary scale-105 z-10";
           } else {
             className +=
               "opacity-30 grayscale hover:opacity-100 hover:grayscale-0 hover:scale-105";
           }
-
           btn.className = className;
-
           btn.onclick = () => {
             currentSlide = index;
             updateNewModalContent();
           };
-
           btn.innerHTML = `<img src="${
             slide.url
           }" class="w-full h-full object-cover" alt="Thumbnail ${index + 1}"/>`;
@@ -1126,7 +1091,6 @@
             main.src = slides[currentSlide].url;
             main.style.opacity = "1";
           }, 150);
-
           counter.textContent = `${currentSlide + 1} / ${slides.length}`;
         }
       }
@@ -1135,7 +1099,6 @@
         currentSlide = (currentSlide - 1 + slides.length) % slides.length;
         updateNewModalContent();
       };
-
       document.getElementById("next-btn-new").onclick = () => {
         currentSlide = (currentSlide + 1) % slides.length;
         updateNewModalContent();
@@ -1144,7 +1107,6 @@
       function closeProjectModal(event) {
         const modal = document.getElementById("project-modal");
         modal.classList.add("opacity-0");
-
         setTimeout(() => {
           modal.classList.add("hidden");
           modal.classList.remove("flex");
