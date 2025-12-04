@@ -68,13 +68,14 @@
 
       ::-webkit-scrollbar {
         width: 6px;
+        height: 8px;
       }
       ::-webkit-scrollbar-track {
         background: #09090b;
       }
       ::-webkit-scrollbar-thumb {
         background: #27272a;
-        border-radius: 3px;
+        border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #3f3f46;
@@ -164,13 +165,7 @@
         overflow: hidden;
       }
       
-      .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-      }
-      .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-      }
+     
     </style>
   </head>
   <body class="antialiased selection:bg-primary selection:text-black">
@@ -955,7 +950,7 @@ E, sempre que posso, compartilho o que aprendo pra ajudar outros devs.</p>
       </div>
 
       <div class="flex flex-col gap-3">
-        <div id="project-thumbs" class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
+        <div id="project-thumbs" class="flex items-center gap-3 overflow-x-auto pb-2">
         </div>
       </div>
     </div>

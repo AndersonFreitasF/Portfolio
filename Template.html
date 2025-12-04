@@ -68,6 +68,7 @@
 
       ::-webkit-scrollbar {
         width: 6px;
+        height: 8px;
       }
       ::-webkit-scrollbar-track {
         background: #09090b;
@@ -98,14 +99,6 @@
 
       .timeline-dot {
         box-shadow: 0 0 0 4px rgba(163, 230, 53, 0.2);
-      }
-
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
-      .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
       }
 
       /* --- estilo da barra que fica passando as tecnologias(marquee) --- */
@@ -279,7 +272,6 @@
       <div
         class="absolute bottom-10 left-0 w-full border-y border-white/5 bg-black/20 backdrop-blur-sm py-6"
       >
-
         <div class="marquee-container">
           <div class="marquee-content gap-16 px-4">
             <i
@@ -885,7 +877,7 @@
               <div class="flex flex-col gap-3">
                 <div
                   id="project-thumbs"
-                  class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide"
+                  class="flex items-center gap-3 overflow-x-auto pb-2"
                 ></div>
               </div>
             </div>
