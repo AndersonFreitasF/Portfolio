@@ -71,7 +71,6 @@
         --text-muted: #a1a1aa;
         --heading-color: #ffffff;
         --nav-bg: rgba(9, 9, 11, 0.6);
-
         --bg-pattern: linear-gradient(to right, #27272a 1px, transparent 1px),
           linear-gradient(to bottom, #27272a 1px, transparent 1px);
         --bg-pattern-opacity: 0.03;
@@ -80,7 +79,6 @@
       .theme-3c {
         --bg-color: #ffffff;
         --surface-color: #fafafa;
-
         --border-color: rgba(251, 176, 52, 0.4);
         --card-border: rgba(251, 176, 52, 0.5);
         --primary-color: #d3122a;
@@ -90,7 +88,6 @@
         --text-muted: #52525b;
         --heading-color: #d3122a;
         --nav-bg: rgba(255, 255, 255, 0.85);
-
         --bg-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill-opacity='0.08'%3E%3Ccircle fill='%23d3122a' cx='18' cy='20' r='6'/%3E%3Ccircle fill='%23fbb034' cx='42' cy='20' r='6'/%3E%3Ccircle fill='%23006633' cx='30' cy='38' r='6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         --bg-pattern-opacity: 1;
       }
@@ -362,8 +359,8 @@
         <p
           class="text-muted text-lg md:text-xl max-w-xl mx-auto leading-relaxed"
         >
-          Transformando linhas de código em soluções reais com foco em
-          performance e qualidade.
+          Fullstack Developer. Transformando linhas de código em soluções reais
+          com foco em performance e qualidade.
         </p>
 
         <div
@@ -471,6 +468,40 @@
             <i
               class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
             ></i>
+
+            <i
+              class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-python-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-git-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
+            <i
+              class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
+            ></i>
           </div>
         </div>
       </div>
@@ -511,9 +542,9 @@
                 </p>
                 <p>
                   Também estou sempre buscando novas tecnologias pra estudar e
-                  aprender. Atualmente estou explorando novos desafios na area
-                  de dados. E, sempre que posso, compartilho o que aprendo pra
-                  ajudar outros devs.
+                  melhorar meu código. Gosto de resolver problemas complexos e
+                  transformar ideias em algo funcionando de verdade. E, sempre
+                  que posso, compartilho o que aprendo pra ajudar outros devs.
                 </p>
               </div>
             </div>
@@ -698,7 +729,7 @@
       </div>
 
       <div class="marquee-container">
-        <div class="marquee-content gap-8 px-4">
+        <div class="marquee-content gap-8 pr-8">
           <div
             class="w-80 h-48 bg-surface border border-cardborder rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
             onclick="openProjectModal('acad')"
@@ -1155,7 +1186,6 @@
     <script>
       lucide.createIcons();
 
-      // Theme Toggle Logic
       const themeToggleBtn = document.getElementById("theme-toggle");
       themeToggleBtn.addEventListener("click", () => {
         document.body.classList.toggle("theme-3c");
