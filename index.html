@@ -139,154 +139,61 @@
   </head>
   <body class="antialiased selection:bg-primary selection:text-black">
     <div class="noise-overlay"></div>
-
-    <div
-      class="fixed inset-0 z-[-1] bg-grid-pattern bg-[size:50px_50px] opacity-[0.03]"
-    ></div>
-
-    <div
-      class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]"
-    ></div>
+    <div class="fixed inset-0 z-[-1] bg-grid-pattern bg-[size:50px_50px] opacity-[0.03]"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]"></div>
 
     <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-      <nav
-        class="glass-nav rounded-full px-6 py-3 flex items-center justify-between gap-8 shadow-2xl shadow-black/50"
-      >
-        <a
-          href="#"
-          class="text-display font-bold text-lg tracking-tight text-white hover:text-primary transition-colors"
-          >AF.</a
-        >
-
+      <nav class="glass-nav rounded-full px-6 py-3 flex items-center justify-between gap-8 shadow-2xl shadow-black/50">
+        <a href="#" class="text-display font-bold text-lg tracking-tight text-white hover:text-primary transition-colors">AF.</a>
         <div class="hidden md:flex items-center gap-6">
-          <a
-            href="#home"
-            class="text-sm text-gray-400 hover:text-white transition-colors"
-            >Início</a
-          >
-          <a
-            href="#about"
-            class="text-sm text-gray-400 hover:text-white transition-colors"
-            >Sobre</a
-          >
-          <a
-            href="#experience"
-            class="text-sm text-gray-400 hover:text-white transition-colors"
-            >Experiência</a
-          >
-          <a
-            href="#projects"
-            class="text-sm text-gray-400 hover:text-white transition-colors"
-            >Projetos</a
-          >
+          <a href="#home" class="text-sm text-gray-400 hover:text-white transition-colors">Início</a>
+          <a href="#about" class="text-sm text-gray-400 hover:text-white transition-colors">Sobre</a>
+          <a href="#experience" class="text-sm text-gray-400 hover:text-white transition-colors">Experiência</a>
+          <a href="#projects" class="text-sm text-gray-400 hover:text-white transition-colors">Projetos</a>
         </div>
-
-        <a
-          href="#contact"
-          class="hidden md:flex items-center gap-2 bg-white text-black px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors"
-        >
+        <a href="#contact" class="hidden md:flex items-center gap-2 bg-white text-black px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors">
           Contato <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
         </a>
-
         <button id="mobile-menu-btn" class="md:hidden text-gray-300">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </nav>
     </div>
 
-    <div
-      id="mobile-menu"
-      class="fixed inset-0 bg-background/95 backdrop-blur-xl z-40 hidden flex-col justify-center items-center gap-8 opacity-0 transition-opacity duration-300"
-    >
-      <a
-        href="#home"
-        class="text-2xl text-display font-bold"
-        onclick="toggleMenu()"
-        >Início</a
-      >
-      <a
-        href="#about"
-        class="text-2xl text-display font-bold"
-        onclick="toggleMenu()"
-        >Sobre</a
-      >
-      <a
-        href="#experience"
-        class="text-2xl text-display font-bold"
-        onclick="toggleMenu()"
-        >Experiência</a
-      >
-      <a
-        href="#projects"
-        class="text-2xl text-display font-bold"
-        onclick="toggleMenu()"
-        >Projetos</a
-      >
-      <a
-        href="#contact"
-        class="text-2xl text-display font-bold text-primary"
-        onclick="toggleMenu()"
-        >Contato</a
-      >
+    <div id="mobile-menu" class="fixed inset-0 bg-background/95 backdrop-blur-xl z-40 hidden flex-col justify-center items-center gap-8 opacity-0 transition-opacity duration-300">
+      <a href="#home" class="text-2xl text-display font-bold" onclick="toggleMenu()">Início</a>
+      <a href="#about" class="text-2xl text-display font-bold" onclick="toggleMenu()">Sobre</a>
+      <a href="#experience" class="text-2xl text-display font-bold" onclick="toggleMenu()">Experiência</a>
+      <a href="#projects" class="text-2xl text-display font-bold" onclick="toggleMenu()">Projetos</a>
+      <a href="#contact" class="text-2xl text-display font-bold text-primary" onclick="toggleMenu()">Contato</a>
       <button class="absolute top-8 right-8" onclick="toggleMenu()">
         <i data-lucide="x" class="w-8 h-8"></i>
       </button>
     </div>
 
-    <section
-      id="home"
-      class="min-h-screen flex flex-col items-center justify-start pt-48 pb-20 px-4 relative"
-    >
+    <section id="home" class="min-h-screen flex flex-col items-center justify-start pt-48 pb-20 px-4 relative">
       <div class="text-center max-w-4xl mx-auto space-y-6">
-        <div
-          class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-white/5 text-xs text-gray-400 mb-4 animate-fade-in-up"
-        >
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-white/5 text-xs text-gray-400 mb-4 animate-fade-in-up">
           <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
           Disponível para novos desafios
         </div>
-
-        <h1
-          class="text-display text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-white"
-        >
+        <h1 class="text-display text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-white">
           ANDERSON <br />
-          <span
-            class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-100"
-            >FREITAS</span
-          >
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-100">FREITAS</span>
         </h1>
-
-        <p
-          class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto leading-relaxed"
-        >
-          Fullstack Developer. Transformando linhas de código em soluções reais
-          com foco em performance e qualidade.
+        <p class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto leading-relaxed">
+          Fullstack Developer. Transformando linhas de código em soluções reais com foco em performance e qualidade.
         </p>
-
-        <div
-          class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
-        >
-          <a
-            href="#experience"
-            class="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-primary transition-colors flex items-center gap-2 group"
-          >
-            Ver Experiência
-            <i
-              data-lucide="arrow-down"
-              class="w-4 h-4 group-hover:translate-y-1 transition-transform"
-            ></i>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <a href="#experience" class="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-primary transition-colors flex items-center gap-2 group">
+            Ver Experiência <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-1 transition-transform"></i>
           </a>
-          <a
-            href="#contact"
-            class="px-8 py-3 border border-border bg-white/5 text-white font-medium rounded-full hover:bg-white/10 transition-colors"
-          >
+          <a href="#contact" class="px-8 py-3 border border-border bg-white/5 text-white font-medium rounded-full hover:bg-white/10 transition-colors">
             Fale Comigo
           </a>
         </div>
       </div>
-
-      <div
-        class="absolute bottom-10 left-0 w-full border-y border-white/5 bg-black/20 backdrop-blur-sm py-6"
-      >
+      <div class="absolute bottom-10 left-0 w-full border-y border-white/5 bg-black/20 backdrop-blur-sm py-6">
         <div class="marquee-container">
           <div class="marquee-content gap-16 px-4">
             <i class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity" title="Java"></i>
@@ -300,7 +207,6 @@
             <i class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity" title="PostgreSQL"></i>
             <i class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity" title="NPM"></i>
             <i class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity" title="Tailwind"></i>
-            
             <i class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
             <i class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
             <i class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
@@ -417,7 +323,73 @@
       </div>
 
       <div class="marquee-container">
-        <div id="projects-track" class="marquee-content gap-8 px-4"></div>
+        <div id="projects-track" class="marquee-content gap-8 px-4">
+          
+          <div class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50" onclick="openProjectModal('acad')" onmouseenter="showMiniModal(event, 'acad')" onmouseleave="hideMiniModal()">
+            <img src="https://i.imgur.com/xga1BuX.png" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+              <span class="text-[10px] text-primary uppercase tracking-wider font-bold mb-1">Fullstack</span>
+              <h4 class="text-white font-display font-bold text-lg">Gestão Academia</h4>
+            </div>
+          </div>
+
+          <div class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50" onclick="openProjectModal('etl')" onmouseenter="showMiniModal(event, 'etl')" onmouseleave="hideMiniModal()">
+            <img src="https://placehold.co/400x300/18181b/a3e635?text=Data+Pipeline" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+              <span class="text-[10px] text-primary uppercase tracking-wider font-bold mb-1">Data Eng.</span>
+              <h4 class="text-white font-display font-bold text-lg">ETL Combustíveis</h4>
+            </div>
+          </div>
+
+          <div class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50" onclick="openProjectModal('ai-orchestrator')" onmouseenter="showMiniModal(event, 'ai-orchestrator')" onmouseleave="hideMiniModal()">
+            <img src="https://placehold.co/400x300/18181b/a3e635?text=AI+Agents" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+              <span class="text-[10px] text-primary uppercase tracking-wider font-bold mb-1">AI / Backend</span>
+              <h4 class="text-white font-display font-bold text-lg">Orquestrador IA</h4>
+            </div>
+          </div>
+
+          <div class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50" onclick="openProjectModal('portfolio')" onmouseenter="showMiniModal(event, 'portfolio')" onmouseleave="hideMiniModal()">
+            <img src="https://placehold.co/400x300/18181b/a3e635?text=Portfolio" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+              <span class="text-[10px] text-primary uppercase tracking-wider font-bold mb-1">Frontend</span>
+              <h4 class="text-white font-display font-bold text-lg">Portfólio</h4>
+            </div>
+          </div>
+
+          <div class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50" onclick="openProjectModal('acad')" onmouseenter="showMiniModal(event, 'acad')" onmouseleave="hideMiniModal()">
+            <img src="https://i.imgur.com/xga1BuX.png" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+              <span class="text-[10px] text-primary uppercase tracking-wider font-bold mb-1">Fullstack</span>
+              <h4 class="text-white font-display font-bold text-lg">Gestão Academia</h4>
+            </div>
+          </div>
+
+          <div class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50" onclick="openProjectModal('etl')" onmouseenter="showMiniModal(event, 'etl')" onmouseleave="hideMiniModal()">
+            <img src="https://placehold.co/400x300/18181b/a3e635?text=Data+Pipeline" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+              <span class="text-[10px] text-primary uppercase tracking-wider font-bold mb-1">Data Eng.</span>
+              <h4 class="text-white font-display font-bold text-lg">ETL Combustíveis</h4>
+            </div>
+          </div>
+
+          <div class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50" onclick="openProjectModal('ai-orchestrator')" onmouseenter="showMiniModal(event, 'ai-orchestrator')" onmouseleave="hideMiniModal()">
+            <img src="https://placehold.co/400x300/18181b/a3e635?text=AI+Agents" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+              <span class="text-[10px] text-primary uppercase tracking-wider font-bold mb-1">AI / Backend</span>
+              <h4 class="text-white font-display font-bold text-lg">Orquestrador IA</h4>
+            </div>
+          </div>
+
+          <div class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50" onclick="openProjectModal('portfolio')" onmouseenter="showMiniModal(event, 'portfolio')" onmouseleave="hideMiniModal()">
+            <img src="https://placehold.co/400x300/18181b/a3e635?text=Portfolio" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+              <span class="text-[10px] text-primary uppercase tracking-wider font-bold mb-1">Frontend</span>
+              <h4 class="text-white font-display font-bold text-lg">Portfólio</h4>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -522,6 +494,7 @@
     <script>
       lucide.createIcons();
 
+     
       const mobileMenu = document.getElementById("mobile-menu");
       function toggleMenu() {
         const isHidden = mobileMenu.classList.contains("hidden");
@@ -539,6 +512,7 @@
       }
       document.getElementById("mobile-menu-btn").addEventListener("click", toggleMenu);
 
+  
       async function handleForm(e) {
         e.preventDefault();
         const form = e.target;
@@ -572,34 +546,31 @@
         }
       }
 
+    
       const projectsData = [
         {
           id: "acad",
           shortTitle: "Gestão Academia",
           category: "Fullstack",
           tags: ["React", "Node.js", "Postgres"],
-          cover: "https://i.imgur.com/xga1BuX.png",
         },
         {
           id: "etl",
           shortTitle: "ETL Combustíveis",
           category: "Data Eng.",
           tags: ["Python", "Pandas", "ETL"],
-          cover: "https://placehold.co/400x300/18181b/a3e635?text=Data+Pipeline",
         },
         {
           id: "ai-orchestrator",
           shortTitle: "Orquestrador IA",
           category: "AI / Backend",
           tags: ["Java", "Spring AI", "Agents"],
-          cover: "https://placehold.co/400x300/18181b/a3e635?text=AI+Agents",
         },
         {
           id: "portfolio",
           shortTitle: "Portfólio",
           category: "Frontend",
           tags: ["HTML5", "Tailwind", "UI/UX"],
-          cover: "https://placehold.co/400x300/18181b/a3e635?text=Portfolio",
         },
       ];
 
@@ -661,41 +632,20 @@
         portfolio: ["Glassmorphism", "CSS Animations"],
       };
 
-      const track = document.getElementById("projects-track");
       
-      function createProjectCard(project) {
-        const card = document.createElement("div");
-        card.className = "w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50";
-        card.onclick = () => openProjectModal(project.id);
-        
-        card.onmouseenter = (e) => showMiniModal(e, project);
-        card.onmouseleave = hideMiniModal;
-
-        card.innerHTML = `
-          <img src="${project.cover}" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
-             <span class="text-[10px] text-primary uppercase tracking-wider font-bold mb-1">${project.category}</span>
-             <h4 class="text-white font-display font-bold text-lg">${project.shortTitle}</h4>
-          </div>
-        `;
-        return card;
-      }
-
-      function renderMarquee() {
-        projectsData.forEach(p => track.appendChild(createProjectCard(p)));
-        projectsData.forEach(p => track.appendChild(createProjectCard(p)));
-        projectsData.forEach(p => track.appendChild(createProjectCard(p)));
-      }
-      renderMarquee();
-
       const miniModal = document.getElementById("mini-modal");
       const mmTitle = document.getElementById("mm-title");
       const mmCategory = document.getElementById("mm-category");
       const mmDesc = document.getElementById("mm-desc");
       const mmTags = document.getElementById("mm-tags");
 
-      function showMiniModal(e, project) {
-        const fullInfo = projectInfo[project.id];
+      function showMiniModal(e, projectId) {
+       
+        const project = projectsData.find(p => p.id === projectId);
+        const fullInfo = projectInfo[projectId];
+
+        if (!project) return;
+
         mmTitle.innerText = project.shortTitle;
         mmCategory.innerText = project.category;
         mmDesc.innerText = fullInfo ? fullInfo.description : "Clique para ver detalhes.";
@@ -708,6 +658,7 @@
           mmTags.appendChild(t);
         });
 
+        
         const rect = e.currentTarget.getBoundingClientRect();
         const left = rect.left + (rect.width / 2) - 140; 
         const top = rect.top + (rect.height / 2) - 80;
@@ -728,6 +679,7 @@
         setTimeout(() => miniModal.classList.add("hidden"), 200);
       }
 
+  
       let currentSlide = 0;
       let slides = [];
 
