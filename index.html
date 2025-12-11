@@ -32,15 +32,18 @@
               display: ["Space Grotesk", "sans-serif"],
             },
             colors: {
-              background: "#09090b",
-              surface: "#18181b",
-              border: "#27272a",
-              primary: "#a3e635",
-              secondary: "#ecfccb",
+              background: "var(--bg-color)",
+              surface: "var(--surface-color)",
+              border: "var(--border-color)",
+              primary: "var(--primary-color)",
+              secondary: "var(--secondary-color)",
+              foreground: "var(--text-main)",
+              muted: "var(--text-muted)",
+              cardborder: "var(--card-border)",
+              heading: "var(--heading-color)",
             },
             backgroundImage: {
-              "grid-pattern":
-                "linear-gradient(to right, #27272a 1px, transparent 1px), linear-gradient(to bottom, #27272a 1px, transparent 1px)",
+              "grid-pattern": "var(--bg-pattern)",
             },
             animation: {
               "fade-in-up": "fadeInUp 0.8s ease-out forwards",
@@ -57,10 +60,51 @@
     </script>
 
     <style>
+      :root {
+        --bg-color: #09090b;
+        --surface-color: #18181b;
+        --border-color: #27272a;
+        --card-border: rgba(255, 255, 255, 0.1);
+        --primary-color: #a3e635;
+        --secondary-color: #ecfccb;
+        --text-main: #ffffff;
+        --text-muted: #a1a1aa;
+        --heading-color: #ffffff;
+        --nav-bg: rgba(9, 9, 11, 0.6);
+
+        --bg-pattern: linear-gradient(to right, #27272a 1px, transparent 1px),
+          linear-gradient(to bottom, #27272a 1px, transparent 1px);
+        --bg-pattern-opacity: 0.03;
+      }
+
+      .theme-3c {
+        --bg-color: #ffffff;
+        --surface-color: #fafafa;
+
+        --border-color: rgba(251, 176, 52, 0.4);
+        --card-border: rgba(251, 176, 52, 0.5);
+        --primary-color: #d3122a;
+        --secondary-color: #fbb034;
+        --tertiary-color: #006633;
+        --text-main: #18181b;
+        --text-muted: #52525b;
+        --heading-color: #d3122a;
+        --nav-bg: rgba(255, 255, 255, 0.85);
+
+        --bg-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill-opacity='0.08'%3E%3Ccircle fill='%23d3122a' cx='18' cy='20' r='6'/%3E%3Ccircle fill='%23fbb034' cx='42' cy='20' r='6'/%3E%3Ccircle fill='%23006633' cx='30' cy='38' r='6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        --bg-pattern-opacity: 1;
+      }
+
       body {
-        background-color: #09090b;
-        color: #f4f4f5;
+        background-color: var(--bg-color);
+        color: var(--text-main);
         overflow-x: hidden;
+        transition: background-color 0.5s ease, color 0.5s ease;
+      }
+
+      #bg-pattern-overlay {
+        opacity: var(--bg-pattern-opacity);
+        transition: opacity 0.5s ease, background-image 0.5s ease;
       }
 
       .noise-overlay {
@@ -80,28 +124,56 @@
         height: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #09090b;
+        background: var(--bg-color);
       }
       ::-webkit-scrollbar-thumb {
-        background: #27272a;
+        background: var(--border-color);
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #3f3f46;
+        background: var(--primary-color);
       }
 
       .glass-nav {
-        background: rgba(9, 9, 11, 0.6);
+        background: var(--nav-bg);
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border-color);
+        transition: border-color 0.3s ease, background 0.3s ease;
+      }
+
+      .theme-3c .glass-nav {
+        border-bottom-width: 2px;
       }
 
       .text-display {
         font-family: "Space Grotesk", sans-serif;
       }
 
+      h1,
+      h2,
+      h3,
+      .text-display.font-bold {
+        color: var(--heading-color);
+        transition: color 0.3s ease;
+      }
+
       .timeline-dot {
         box-shadow: 0 0 0 4px rgba(163, 230, 53, 0.2);
+      }
+
+      .theme-3c .timeline-dot {
+        background-color: var(--primary-color);
+        box-shadow: 0 0 0 4px rgba(211, 18, 42, 0.2);
+      }
+      .theme-3c .timeline-dot.secondary {
+        background-color: var(--secondary-color);
+        box-shadow: 0 0 0 4px rgba(251, 176, 52, 0.2);
+      }
+
+      .theme-3c .group:hover .group-hover\:border-primary\/50,
+      .theme-3c .hover\:border-primary\/30:hover {
+        border-color: var(--secondary-color) !important;
+        box-shadow: 0 10px 30px -10px rgba(251, 176, 52, 0.3);
       }
 
       .marquee-container {
@@ -132,13 +204,38 @@
         transition: opacity 0.2s ease, transform 0.2s ease;
         pointer-events: none;
       }
+
+      .theme-3c #mini-modal {
+        border-color: var(--secondary-color);
+      }
+
+      .theme-toggle-btn {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .theme-3c .theme-toggle-btn {
+        border-color: var(--secondary-color);
+        background: linear-gradient(
+          135deg,
+          rgba(211, 18, 42, 0.1),
+          rgba(251, 176, 52, 0.15),
+          rgba(0, 102, 51, 0.1)
+        );
+        color: var(--primary-color);
+      }
+      .theme-3c .theme-toggle-btn i {
+        fill: rgba(211, 18, 42, 0.2);
+      }
     </style>
   </head>
   <body class="antialiased selection:bg-primary selection:text-black">
     <div class="noise-overlay"></div>
 
     <div
-      class="fixed inset-0 z-[-1] bg-grid-pattern bg-[size:50px_50px] opacity-[0.03]"
+      id="bg-pattern-overlay"
+      class="fixed inset-0 z-[-1] bg-grid-pattern bg-[size:50px_50px]"
     ></div>
 
     <div
@@ -151,43 +248,53 @@
       >
         <a
           href="#"
-          class="text-display font-bold text-lg tracking-tight text-white hover:text-primary transition-colors"
+          class="text-display font-bold text-lg tracking-tight hover:text-primary transition-colors"
           >AF.</a
         >
 
         <div class="hidden md:flex items-center gap-6">
           <a
             href="#home"
-            class="text-sm text-gray-400 hover:text-white transition-colors"
+            class="text-sm text-muted hover:text-foreground transition-colors"
             >Início</a
           >
           <a
             href="#about"
-            class="text-sm text-gray-400 hover:text-white transition-colors"
+            class="text-sm text-muted hover:text-foreground transition-colors"
             >Sobre</a
           >
           <a
             href="#experience"
-            class="text-sm text-gray-400 hover:text-white transition-colors"
+            class="text-sm text-muted hover:text-foreground transition-colors"
             >Experiência</a
           >
           <a
             href="#projects"
-            class="text-sm text-gray-400 hover:text-white transition-colors"
+            class="text-sm text-muted hover:text-foreground transition-colors"
             >Projetos</a
           >
         </div>
 
-        <a
-          href="#contact"
-          class="hidden md:flex items-center gap-2 bg-white text-black px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors"
-        >
-          Contato <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-        </a>
+        <div class="flex items-center gap-3">
+          <button
+            id="theme-toggle"
+            class="theme-toggle-btn w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-primary transition-all"
+            title="Alternar Tema da Marca"
+          >
+            <i data-lucide="coffee" class="w-4 h-4"></i>
+          </button>
 
-        <button id="mobile-menu-btn" class="md:hidden text-gray-300">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
+          <a
+            href="#contact"
+            class="hidden md:flex items-center gap-2 bg-primary text-black px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-secondary transition-colors"
+          >
+            Contato <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+
+          <button id="mobile-menu-btn" class="md:hidden text-muted">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
       </nav>
     </div>
 
@@ -225,7 +332,10 @@
         onclick="toggleMenu()"
         >Contato</a
       >
-      <button class="absolute top-8 right-8" onclick="toggleMenu()">
+      <button
+        class="absolute top-8 right-8 text-foreground"
+        onclick="toggleMenu()"
+      >
         <i data-lucide="x" class="w-8 h-8"></i>
       </button>
     </div>
@@ -236,27 +346,24 @@
     >
       <div class="text-center max-w-4xl mx-auto space-y-6">
         <div
-          class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-white/5 text-xs text-gray-400 mb-4 animate-fade-in-up"
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface/50 text-xs text-muted mb-4 animate-fade-in-up"
         >
           <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
           Disponível para novos desafios
         </div>
 
         <h1
-          class="text-display text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-white"
+          class="text-display text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9]"
         >
           ANDERSON <br />
-          <span
-            class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-100"
-            >FREITAS</span
-          >
+          <span>FREITAS</span>
         </h1>
 
         <p
-          class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto leading-relaxed"
+          class="text-muted text-lg md:text-xl max-w-xl mx-auto leading-relaxed"
         >
-          Fullstack Developer. Transformando linhas de código em soluções reais
-          com foco em performance e qualidade.
+          Transformando linhas de código em soluções reais com foco em
+          performance e qualidade.
         </p>
 
         <div
@@ -264,7 +371,7 @@
         >
           <a
             href="#experience"
-            class="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-primary transition-colors flex items-center gap-2 group"
+            class="px-8 py-3 bg-primary text-black font-semibold rounded-full hover:bg-secondary transition-colors flex items-center gap-2 group border border-transparent"
           >
             Ver Experiência
             <i
@@ -274,7 +381,7 @@
           </a>
           <a
             href="#contact"
-            class="px-8 py-3 border border-border bg-white/5 text-white font-medium rounded-full hover:bg-white/10 transition-colors"
+            class="px-8 py-3 border border-border bg-surface/50 text-foreground font-medium rounded-full hover:bg-surface hover:border-primary transition-colors"
           >
             Fale Comigo
           </a>
@@ -282,7 +389,7 @@
       </div>
 
       <div
-        class="absolute bottom-10 left-0 w-full border-y border-white/5 bg-black/20 backdrop-blur-sm py-6"
+        class="absolute bottom-10 left-0 w-full border-y border-border bg-surface/20 backdrop-blur-sm py-6"
       >
         <div class="marquee-container">
           <div class="marquee-content gap-16 px-4">
@@ -364,40 +471,6 @@
             <i
               class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
             ></i>
-
-            <i
-              class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-python-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-git-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
           </div>
         </div>
       </div>
@@ -406,7 +479,7 @@
     <section id="about" class="py-24 px-4 relative">
       <div class="max-w-7xl mx-auto">
         <h2
-          class="text-display text-3xl md:text-5xl font-bold text-white mb-12 text-center"
+          class="text-display text-3xl md:text-5xl font-bold mb-12 text-center"
         >
           Sobre Mim
         </h2>
@@ -415,18 +488,16 @@
           class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[600px]"
         >
           <div
-            class="md:col-span-2 md:row-span-2 bg-surface border border-white/5 rounded-3xl p-8 flex flex-col justify-between hover:border-white/10 transition-colors"
+            class="md:col-span-2 md:row-span-2 bg-surface border border-cardborder rounded-3xl p-8 flex flex-col justify-between hover:border-primary/30 transition-all"
           >
             <div>
               <div
-                class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-6 text-primary"
+                class="w-16 h-16 bg-background rounded-2xl flex items-center justify-center mb-6 text-primary border border-cardborder"
               >
                 <i data-lucide="user" class="w-8 h-8"></i>
               </div>
-              <h3 class="text-2xl font-bold text-white mb-4 font-display">
-                A Jornada
-              </h3>
-              <div class="space-y-4 text-gray-400 leading-relaxed">
+              <h3 class="text-2xl font-bold mb-4 font-display">A Jornada</h3>
+              <div class="space-y-4 text-muted leading-relaxed">
                 <p>
                   Minha história com código começou no ensino médio, onde tive
                   meu primeiro contato com C em um curso técnico, e desde então
@@ -440,21 +511,21 @@
                 </p>
                 <p>
                   Também estou sempre buscando novas tecnologias pra estudar e
-                  melhorar meu código. Gosto de resolver problemas complexos e
-                  transformar ideias em algo funcionando de verdade. E, sempre
-                  que posso, compartilho o que aprendo pra ajudar outros devs.
+                  aprender. Atualmente estou explorando novos desafios na area
+                  de dados. E, sempre que posso, compartilho o que aprendo pra
+                  ajudar outros devs.
                 </p>
               </div>
             </div>
-            <div class="mt-6 pt-6 border-t border-white/5">
-              <p class="text-sm text-gray-500">
-                Idiomas: <span class="text-white">Português, Inglês</span>
+            <div class="mt-6 pt-6 border-t border-cardborder">
+              <p class="text-sm text-muted">
+                Idiomas: <span class="text-foreground">Português, Inglês</span>
               </p>
             </div>
           </div>
 
           <div
-            class="md:col-span-1 md:row-span-1 bg-surface border border-white/5 rounded-3xl p-6 flex flex-col justify-center items-center text-center hover:border-white/10 transition-colors group relative overflow-hidden"
+            class="md:col-span-1 md:row-span-1 bg-surface border border-cardborder rounded-3xl p-6 flex flex-col justify-center items-center text-center hover:border-primary/30 transition-all group relative overflow-hidden"
           >
             <div
               class="absolute inset-0 bg-primary/5 scale-0 group-hover:scale-100 transition-transform rounded-3xl"
@@ -463,69 +534,67 @@
               data-lucide="graduation-cap"
               class="w-10 h-10 text-primary mb-4 group-hover:-translate-y-1 transition-transform"
             ></i>
-            <h4 class="text-white font-bold mb-1">Formação</h4>
-            <p class="text-sm font-semibold text-white">
+            <h4 class="font-bold mb-1">Formação</h4>
+            <p class="text-sm font-semibold text-foreground">
               Ciências da Computação
             </p>
-            <p class="text-xs text-gray-500 mt-1">IFCE (Cursando)</p>
+            <p class="text-xs text-muted mt-1">IFCE (Cursando)</p>
           </div>
 
           <div
             class="md:col-span-1 md:row-span-1 bg-primary text-black rounded-3xl p-6 flex flex-col justify-center items-center text-center"
           >
             <h4 class="text-5xl font-bold font-display mb-1">2+</h4>
-            <p class="text-sm font-semibold opacity-80">Anos de Experiência</p>
+            <p class="text-sm font-semibold opacity-90">Anos de Experiência</p>
           </div>
 
           <div
-            class="md:col-span-2 md:row-span-1 bg-surface border border-white/5 rounded-3xl p-8 relative overflow-hidden group"
+            class="md:col-span-2 md:row-span-1 bg-surface border border-cardborder rounded-3xl p-8 relative overflow-hidden group hover:border-primary/30 transition-all"
           >
-            <h3
-              class="text-xl font-bold text-white mb-6 font-display z-10 relative"
-            >
+            <h3 class="text-xl font-bold mb-6 font-display z-10 relative">
               Stack Principal
             </h3>
             <div class="flex flex-wrap gap-3 relative z-10">
               <span
-                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                class="px-4 py-2 bg-background rounded-lg text-sm text-muted border border-cardborder hover:border-primary/50 transition-colors"
                 >Java</span
               >
               <span
-                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                class="px-4 py-2 bg-background rounded-lg text-sm text-muted border border-cardborder hover:border-primary/50 transition-colors"
                 >Spring</span
               >
               <span
-                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                class="px-4 py-2 bg-background rounded-lg text-sm text-muted border border-cardborder hover:border-primary/50 transition-colors"
                 >Node.js</span
               >
               <span
-                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                class="px-4 py-2 bg-background rounded-lg text-sm text-muted border border-cardborder hover:border-primary/50 transition-colors"
                 >TypeScript</span
               >
               <span
-                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                class="px-4 py-2 bg-background rounded-lg text-sm text-muted border border-cardborder hover:border-primary/50 transition-colors"
                 >Linux</span
               >
               <span
-                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                class="px-4 py-2 bg-background rounded-lg text-sm text-muted border border-cardborder hover:border-primary/50 transition-colors"
                 >Docker</span
               >
               <span
-                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                class="px-4 py-2 bg-background rounded-lg text-sm text-muted border border-cardborder hover:border-primary/50 transition-colors"
                 >PostgreSQL</span
               >
               <span
-                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                class="px-4 py-2 bg-background rounded-lg text-sm text-muted border border-cardborder hover:border-primary/50 transition-colors"
                 >Git</span
               >
               <span
-                class="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5 hover:border-primary/50 transition-colors"
+                class="px-4 py-2 bg-background rounded-lg text-sm text-muted border border-cardborder hover:border-primary/50 transition-colors"
                 >Python</span
               >
             </div>
             <i
               data-lucide="code-2"
-              class="absolute -bottom-4 -right-4 w-32 h-32 text-white/5 group-hover:text-white/10 transition-colors rotate-12"
+              class="absolute -bottom-4 -right-4 w-32 h-32 text-primary/10 group-hover:text-primary/20 transition-colors rotate-12"
             ></i>
           </div>
         </div>
@@ -535,12 +604,12 @@
     <section id="experience" class="py-24 px-4 bg-surface/30">
       <div class="max-w-4xl mx-auto">
         <h2
-          class="text-display text-3xl md:text-5xl font-bold text-white mb-16 text-center"
+          class="text-display text-3xl md:text-5xl font-bold mb-16 text-center"
         >
           Experiência Profissional
         </h2>
 
-        <div class="relative border-l border-white/10 ml-4 md:ml-0 space-y-12">
+        <div class="relative border-l border-border ml-4 md:ml-0 space-y-12">
           <div class="mb-10 md:ml-12 ml-8 relative group">
             <span
               class="absolute -left-[41px] md:-left-[59px] top-1 w-5 h-5 bg-primary rounded-full timeline-dot group-hover:scale-125 transition-transform"
@@ -549,7 +618,7 @@
             <div
               class="flex flex-col md:flex-row md:items-center justify-between mb-2"
             >
-              <h3 class="text-xl font-bold text-white font-display">
+              <h3 class="text-xl font-bold font-display">
                 Estagiário de Desenvolvimento
               </h3>
               <span
@@ -558,21 +627,21 @@
               >
             </div>
             <div class="flex items-center gap-2 mb-4">
-              <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
-              <span class="text-lg text-gray-300 font-medium">LIVSAÚDE</span>
-              <span class="text-gray-600">•</span>
-              <span class="text-sm text-gray-500">Fortaleza, Ceará</span>
+              <i data-lucide="briefcase" class="w-4 h-4 text-muted"></i>
+              <span class="text-lg text-muted font-medium">LIVSAÚDE</span>
+              <span class="text-muted">•</span>
+              <span class="text-sm text-muted">Fortaleza, Ceará</span>
             </div>
-            <p class="text-gray-400 mb-4 leading-relaxed">
+            <p class="text-muted mb-4 leading-relaxed">
               Atuação no desenvolvimento de software focado em saúde.
             </p>
             <div class="flex flex-wrap gap-2">
               <span
-                class="text-xs text-gray-400 border border-white/10 px-2 py-1 rounded"
+                class="text-xs text-muted border border-cardborder px-2 py-1 rounded"
                 >Node.js</span
               >
               <span
-                class="text-xs text-gray-400 border border-white/10 px-2 py-1 rounded"
+                class="text-xs text-muted border border-cardborder px-2 py-1 rounded"
                 >TypeScript</span
               >
             </div>
@@ -580,38 +649,38 @@
 
           <div class="mb-10 md:ml-12 ml-8 relative group">
             <span
-              class="absolute -left-[41px] md:-left-[59px] top-1 w-5 h-5 bg-zinc-700 rounded-full border-4 border-background group-hover:bg-primary transition-colors"
+              class="absolute -left-[41px] md:-left-[59px] top-1 w-5 h-5 bg-muted rounded-full border-4 border-background group-hover:bg-secondary transition-colors timeline-dot secondary"
             ></span>
 
             <div
               class="flex flex-col md:flex-row md:items-center justify-between mb-2"
             >
-              <h3 class="text-xl font-bold text-white font-display">
+              <h3 class="text-xl font-bold font-display">
                 Desenvolvedor de Software (Aprendiz)
               </h3>
-              <span class="text-gray-500 text-sm font-mono"
+              <span class="text-muted text-sm font-mono"
                 >Ago 2021 - Ago 2022</span
               >
             </div>
             <div class="flex items-center gap-2 mb-4">
-              <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
-              <span class="text-lg text-gray-300 font-medium"
+              <i data-lucide="briefcase" class="w-4 h-4 text-muted"></i>
+              <span class="text-lg text-muted font-medium"
                 >A.M Informática Ltda</span
               >
-              <span class="text-gray-600">•</span>
-              <span class="text-sm text-gray-500">Ceará, Brasil</span>
+              <span class="text-muted">•</span>
+              <span class="text-sm text-muted">Ceará, Brasil</span>
             </div>
-            <p class="text-gray-400 mb-4 leading-relaxed">
+            <p class="text-muted mb-4 leading-relaxed">
               Início da jornada profissional com foco em desenvolvimento desktop
               e controle de versão.
             </p>
             <div class="flex flex-wrap gap-2">
               <span
-                class="text-xs text-gray-400 border border-white/10 px-2 py-1 rounded"
+                class="text-xs text-muted border border-cardborder px-2 py-1 rounded"
                 >Java</span
               >
               <span
-                class="text-xs text-gray-400 border border-white/10 px-2 py-1 rounded"
+                class="text-xs text-muted border border-cardborder px-2 py-1 rounded"
                 >Git</span
               >
             </div>
@@ -622,10 +691,8 @@
 
     <section id="projects" class="py-32 relative w-full overflow-hidden">
       <div class="max-w-7xl mx-auto text-center px-4 mb-12">
-        <h2 class="text-display text-3xl md:text-4xl font-bold text-white">
-          Projetos
-        </h2>
-        <p class="text-gray-400 mt-2 text-sm">
+        <h2 class="text-display text-3xl md:text-4xl font-bold">Projetos</h2>
+        <p class="text-muted mt-2 text-sm">
           Passe o mouse para ver detalhes • Clique para expandir
         </p>
       </div>
@@ -633,7 +700,7 @@
       <div class="marquee-container">
         <div class="marquee-content gap-8 px-4">
           <div
-            class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
+            class="w-80 h-48 bg-surface border border-cardborder rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
             onclick="openProjectModal('acad')"
             onmouseenter="showMiniModal(event, 'acad')"
             onmouseleave="hideMiniModal()"
@@ -656,7 +723,7 @@
           </div>
 
           <div
-            class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
+            class="w-80 h-48 bg-surface border border-cardborder rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
             onclick="openProjectModal('etl')"
             onmouseenter="showMiniModal(event, 'etl')"
             onmouseleave="hideMiniModal()"
@@ -679,7 +746,7 @@
           </div>
 
           <div
-            class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
+            class="w-80 h-48 bg-surface border border-cardborder rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
             onclick="openProjectModal('ai-orchestrator')"
             onmouseenter="showMiniModal(event, 'ai-orchestrator')"
             onmouseleave="hideMiniModal()"
@@ -702,7 +769,7 @@
           </div>
 
           <div
-            class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
+            class="w-80 h-48 bg-surface border border-cardborder rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
             onclick="openProjectModal('portfolio')"
             onmouseenter="showMiniModal(event, 'portfolio')"
             onmouseleave="hideMiniModal()"
@@ -725,7 +792,7 @@
           </div>
 
           <div
-            class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
+            class="w-80 h-48 bg-surface border border-cardborder rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
             onclick="openProjectModal('acad')"
             onmouseenter="showMiniModal(event, 'acad')"
             onmouseleave="hideMiniModal()"
@@ -748,7 +815,7 @@
           </div>
 
           <div
-            class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
+            class="w-80 h-48 bg-surface border border-cardborder rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
             onclick="openProjectModal('etl')"
             onmouseenter="showMiniModal(event, 'etl')"
             onmouseleave="hideMiniModal()"
@@ -771,7 +838,7 @@
           </div>
 
           <div
-            class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
+            class="w-80 h-48 bg-surface border border-cardborder rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
             onclick="openProjectModal('ai-orchestrator')"
             onmouseenter="showMiniModal(event, 'ai-orchestrator')"
             onmouseleave="hideMiniModal()"
@@ -794,7 +861,7 @@
           </div>
 
           <div
-            class="w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
+            class="w-80 h-48 bg-surface border border-cardborder rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
             onclick="openProjectModal('portfolio')"
             onmouseenter="showMiniModal(event, 'portfolio')"
             onmouseleave="hideMiniModal()"
@@ -823,7 +890,7 @@
           href="https://github.com/AndersonFreitasF"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-8 py-3 border border-white/10 bg-white/5 text-white font-medium rounded-full hover:bg-white/10 hover:border-white/20 transition-colors group"
+          class="inline-flex items-center gap-2 px-8 py-3 border border-border bg-surface/50 text-foreground font-medium rounded-full hover:bg-surface hover:border-primary transition-colors group"
         >
           <i data-lucide="github" class="w-5 h-5"></i>
           Ver Mais no GitHub
@@ -837,17 +904,17 @@
 
     <section id="contact" class="py-24 px-4">
       <div
-        class="max-w-2xl mx-auto bg-surface border border-white/5 rounded-3xl p-8 md:p-12 relative overflow-hidden"
+        class="max-w-2xl mx-auto bg-surface border border-cardborder rounded-3xl p-8 md:p-12 relative overflow-hidden"
       >
         <div
           class="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[60px] rounded-full pointer-events-none"
         ></div>
 
         <div class="mb-10">
-          <h2 class="text-display text-3xl font-bold text-white mb-2">
+          <h2 class="text-display text-3xl font-bold text-foreground mb-2">
             Vamos conversar?
           </h2>
-          <p class="text-gray-400">
+          <p class="text-muted">
             Preencha o formulário e entrarei em contato em breve.
           </p>
         </div>
@@ -856,27 +923,27 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="space-y-1">
               <label
-                class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                class="text-xs font-semibold text-muted uppercase tracking-wider"
                 >Nome</label
               >
               <input
                 type="text"
                 name="nome"
                 required
-                class="w-full bg-background border border-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-700"
+                class="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-500"
                 placeholder="Seu Nome"
               />
             </div>
             <div class="space-y-1">
               <label
-                class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                class="text-xs font-semibold text-muted uppercase tracking-wider"
                 >Email</label
               >
               <input
                 type="email"
                 name="email"
                 required
-                class="w-full bg-background border border-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-700"
+                class="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-500"
                 placeholder="seu@email.com"
               />
             </div>
@@ -884,20 +951,20 @@
 
           <div class="space-y-1">
             <label
-              class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+              class="text-xs font-semibold text-muted uppercase tracking-wider"
               >Mensagem</label
             >
             <textarea
               name="mensagem"
               required
-              class="w-full bg-background border border-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-700 resize-none h-32"
+              class="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder-gray-500 resize-none h-32"
               placeholder="Como posso ajudar?"
             ></textarea>
           </div>
 
           <button
             type="submit"
-            class="w-full bg-white text-black font-bold py-4 rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-2 group"
+            class="w-full bg-primary text-black font-bold py-4 rounded-lg hover:bg-secondary transition-colors flex items-center justify-center gap-2 group"
           >
             Enviar Mensagem
             <i
@@ -909,47 +976,45 @@
       </div>
     </section>
 
-    <footer class="py-8 text-center border-t border-white/5">
+    <footer class="py-8 text-center border-t border-border">
       <div class="flex items-center justify-center gap-6 mb-4">
         <a
           href="https://github.com/AndersonFreitasF"
           target="_blank"
-          class="text-gray-500 hover:text-white transition-colors"
+          class="text-muted hover:text-foreground transition-colors"
           ><i data-lucide="github" class="w-5 h-5"></i
         ></a>
-        <a href="#" class="text-gray-500 hover:text-blue-400 transition-colors"
+        <a href="#" class="text-muted hover:text-blue-400 transition-colors"
           ><i data-lucide="linkedin" class="w-5 h-5"></i
         ></a>
-        <a href="#" class="text-gray-500 hover:text-pink-400 transition-colors"
+        <a href="#" class="text-muted hover:text-pink-400 transition-colors"
           ><i data-lucide="instagram" class="w-5 h-5"></i
         ></a>
       </div>
-      <p class="text-xs text-gray-600">
-        &copy; 2025 Anderson Freires de Freitas.
-      </p>
+      <p class="text-xs text-muted">&copy; 2025 Anderson Freires de Freitas.</p>
     </footer>
 
     <div
       id="mini-modal"
-      class="fixed z-[999] opacity-0 hidden bg-surface/95 backdrop-blur-xl border border-white/10 p-5 rounded-2xl shadow-2xl w-[280px] pointer-events-none transform scale-95 transition-all duration-200"
+      class="fixed z-[999] opacity-0 hidden bg-surface/95 backdrop-blur-xl border border-cardborder p-5 rounded-2xl shadow-2xl w-[280px] pointer-events-none transform scale-95 transition-all duration-200"
     >
       <div class="flex items-center gap-2 mb-3">
         <div id="mm-icon" class="w-2 h-2 rounded-full bg-primary"></div>
         <span
           id="mm-category"
-          class="text-[10px] uppercase tracking-wider text-gray-500 font-bold"
+          class="text-[10px] uppercase tracking-wider text-muted font-bold"
           >Category</span
         >
       </div>
       <h4
         id="mm-title"
-        class="text-lg font-bold text-white font-display leading-tight mb-2"
+        class="text-lg font-bold font-display leading-tight mb-2"
       >
         Project Title
       </h4>
       <p
         id="mm-desc"
-        class="text-xs text-gray-400 leading-relaxed mb-4 line-clamp-3"
+        class="text-xs text-muted leading-relaxed mb-4 line-clamp-3"
       >
         Description goes here.
       </p>
@@ -970,30 +1035,27 @@
       onclick="closeProjectModal(event)"
     >
       <div
-        class="bg-surface border border-white/10 rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl"
+        class="bg-surface border border-cardborder rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl"
         onclick="event.stopPropagation()"
       >
         <div
-          class="flex items-center justify-between p-6 border-b border-white/10"
+          class="flex items-center justify-between p-6 border-b border-cardborder"
         >
-          <h3
-            id="modal-title"
-            class="text-2xl font-bold text-white font-display"
-          ></h3>
+          <h3 id="modal-title" class="text-2xl font-bold font-display"></h3>
           <div class="flex items-center gap-4">
             <a
               id="modal-github-link"
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-white/60 hover:text-white transition-colors"
+              class="text-muted hover:text-foreground transition-colors"
               title="Ver no GitHub"
             >
               <i data-lucide="github" class="w-6 h-6"></i>
             </a>
             <button
               onclick="closeProjectModal()"
-              class="text-white/60 hover:text-white transition-colors"
+              class="text-muted hover:text-foreground transition-colors"
             >
               <i data-lucide="x" class="w-6 h-6"></i>
             </button>
@@ -1005,7 +1067,7 @@
           >
             <div class="lg:col-span-7 flex flex-col gap-4">
               <div
-                class="rounded-xl overflow-hidden border border-white/10 bg-black/50 flex items-center justify-center min-h-[380px] relative group"
+                class="rounded-xl overflow-hidden border border-cardborder bg-black/50 flex items-center justify-center min-h-[380px] relative group"
               >
                 <img
                   id="project-main-image"
@@ -1015,13 +1077,13 @@
                 />
                 <button
                   id="prev-btn-new"
-                  class="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-primary hover:text-black transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm z-20"
+                  class="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-primary hover:text-white transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm z-20"
                 >
                   <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
                 <button
                   id="next-btn-new"
-                  class="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-primary hover:text-black transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm z-20"
+                  class="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-primary hover:text-white transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm z-20"
                 >
                   <i data-lucide="chevron-right" class="w-6 h-6"></i>
                 </button>
@@ -1041,29 +1103,29 @@
               <div class="mb-4">
                 <p
                   id="modal-description"
-                  class="text-gray-400 text-sm leading-relaxed"
+                  class="text-muted text-sm leading-relaxed"
                 ></p>
               </div>
               <div class="mt-0">
                 <h5
-                  class="text-sm text-gray-400 mb-2 font-semibold uppercase tracking-wider"
+                  class="text-sm text-muted mb-2 font-semibold uppercase tracking-wider"
                 >
                   Desafios técnicos
                 </h5>
                 <ul
                   id="project-challenges"
-                  class="text-sm text-gray-300 list-disc ml-5 space-y-1"
+                  class="text-sm text-muted list-disc ml-5 space-y-1"
                 ></ul>
               </div>
               <div class="mt-4">
                 <h5
-                  class="text-sm text-gray-400 mb-2 font-semibold uppercase tracking-wider"
+                  class="text-sm text-muted mb-2 font-semibold uppercase tracking-wider"
                 >
                   Aprendizados
                 </h5>
                 <ul
                   id="project-learnings"
-                  class="text-sm text-gray-300 list-disc ml-5 space-y-1"
+                  class="text-sm text-muted list-disc ml-5 space-y-1"
                 ></ul>
               </div>
               <div class="mt-8 grid grid-cols-2 gap-4 pt-6">
@@ -1071,7 +1133,7 @@
                   id="project-live-btn"
                   href="#"
                   target="_blank"
-                  class="w-full justify-center px-6 py-3 bg-primary text-black rounded-full font-semibold inline-flex items-center gap-2 hover:bg-secondary transition-colors"
+                  class="w-full justify-center px-6 py-3 bg-primary text-black font-bold rounded-full inline-flex items-center gap-2 hover:bg-secondary transition-colors"
                   >Projeto no ar</a
                 >
                 <a
@@ -1079,7 +1141,7 @@
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="w-full justify-center px-4 py-3 border border-white/10 rounded-lg inline-flex items-center gap-2 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+                  class="w-full justify-center px-4 py-3 border border-cardborder rounded-lg inline-flex items-center gap-2 text-muted hover:text-foreground hover:bg-surface transition-colors"
                   title="Repositório"
                   >Repositório</a
                 >
@@ -1092,6 +1154,12 @@
 
     <script>
       lucide.createIcons();
+
+      // Theme Toggle Logic
+      const themeToggleBtn = document.getElementById("theme-toggle");
+      themeToggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("theme-3c");
+      });
 
       const mobileMenu = document.getElementById("mobile-menu");
       function toggleMenu() {
@@ -1286,7 +1354,7 @@
         project.tags.forEach((tag) => {
           const t = document.createElement("span");
           t.className =
-            "px-2 py-0.5 bg-white/10 rounded text-[10px] text-gray-300 border border-white/5";
+            "px-2 py-0.5 bg-background rounded text-[10px] text-muted border border-border";
           t.innerText = tag;
           mmTags.appendChild(t);
         });
@@ -1366,12 +1434,12 @@
           const btn = document.createElement("button");
           const isSelected = index === currentSlide;
           let className =
-            "relative rounded-lg overflow-hidden h-16 w-24 flex-shrink-0 transition-all duration-300 border border-white/10 ";
+            "relative rounded-lg overflow-hidden h-16 w-24 flex-shrink-0 transition-all duration-300 border border-border ";
           if (isSelected)
             className += "opacity-100 ring-2 ring-primary scale-105 z-10";
           else
             className +=
-              "opacity-30 grayscale hover:opacity-100 hover:grayscale-0 hover:scale-105";
+              "opacity-50 grayscale hover:opacity-100 hover:grayscale-0 hover:scale-105";
           btn.className = className;
           btn.onclick = () => {
             currentSlide = index;
