@@ -109,7 +109,6 @@
         box-shadow: 0 0 0 4px rgba(163, 230, 53, 0.2);
       }
 
-      /* Marquee Styles */
       .marquee-container {
         overflow: hidden;
         white-space: nowrap;
@@ -128,15 +127,13 @@
         will-change: transform;
       }
       
-      /* Pausa o marquee quando passa o mouse em QUALQUER item */
       .marquee-content:hover {
         animation-play-state: paused;
       }
 
-      /* Mini Modal (Popover) */
       #mini-modal {
         transition: opacity 0.2s ease, transform 0.2s ease;
-        pointer-events: none; /* Para não atrapalhar o clique */
+        pointer-events: none;
       }
     </style>
   </head>
@@ -295,6 +292,7 @@
             <i class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity" title="Java"></i>
             <i class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity" title="Spring Boot"></i>
             <i class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity" title="TypeScript"></i>
+            <i class="devicon-python-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity" title="Python"></i>
             <i class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity" title="Node.js"></i>
             <i class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity" title="React"></i>
             <i class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity" title="Docker"></i>
@@ -306,6 +304,7 @@
             <i class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
             <i class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
             <i class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
+            <i class="devicon-python-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
             <i class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
             <i class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
             <i class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
@@ -540,7 +539,6 @@
       }
       document.getElementById("mobile-menu-btn").addEventListener("click", toggleMenu);
 
-      
       async function handleForm(e) {
         e.preventDefault();
         const form = e.target;
@@ -573,7 +571,6 @@
           btn.disabled = false;
         }
       }
-//
 
       const projectsData = [
         {
@@ -591,7 +588,7 @@
           cover: "https://placehold.co/400x300/18181b/a3e635?text=Data+Pipeline",
         },
         {
-          id: "ai-orchestrator", 
+          id: "ai-orchestrator",
           shortTitle: "Orquestrador IA",
           category: "AI / Backend",
           tags: ["Java", "Spring AI", "Agents"],
@@ -606,7 +603,6 @@
         },
       ];
 
-
       const projectInfo = {
         acad: {
           title: "Sistema de Gestão de Academia Digital",
@@ -620,7 +616,7 @@
           liveUrl: "#",
           description: "Pipeline de ETL (Extract, Transform, Load) desenvolvido para coletar, limpar e analisar dados de vendas de combustíveis no Brasil. O projeto utiliza Python e Pandas para processar grandes volumes de dados governamentais e gerar insights."
         },
-        "ai-orchestrator": { 
+        "ai-orchestrator": {
           title: "Orquestrador de Agentes IA",
           repoUrl: "https://github.com/AndersonFreitasF/tribunal",
           liveUrl: "#",
@@ -665,15 +661,13 @@
         portfolio: ["Glassmorphism", "CSS Animations"],
       };
 
-      
       const track = document.getElementById("projects-track");
       
-     
       function createProjectCard(project) {
         const card = document.createElement("div");
         card.className = "w-80 h-48 bg-surface border border-white/5 rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50";
         card.onclick = () => openProjectModal(project.id);
-   
+        
         card.onmouseenter = (e) => showMiniModal(e, project);
         card.onmouseleave = hideMiniModal;
 
@@ -687,18 +681,13 @@
         return card;
       }
 
-    
       function renderMarquee() {
-       
         projectsData.forEach(p => track.appendChild(createProjectCard(p)));
-       
         projectsData.forEach(p => track.appendChild(createProjectCard(p)));
-       
         projectsData.forEach(p => track.appendChild(createProjectCard(p)));
       }
       renderMarquee();
 
-   
       const miniModal = document.getElementById("mini-modal");
       const mmTitle = document.getElementById("mm-title");
       const mmCategory = document.getElementById("mm-category");
@@ -706,7 +695,6 @@
       const mmTags = document.getElementById("mm-tags");
 
       function showMiniModal(e, project) {
-      
         const fullInfo = projectInfo[project.id];
         mmTitle.innerText = project.shortTitle;
         mmCategory.innerText = project.category;
@@ -720,16 +708,14 @@
           mmTags.appendChild(t);
         });
 
-      
         const rect = e.currentTarget.getBoundingClientRect();
-       
         const left = rect.left + (rect.width / 2) - 140; 
-        const top = rect.top + (rect.height / 2) - 80; /
+        const top = rect.top + (rect.height / 2) - 80;
+
         miniModal.style.left = `${left}px`;
         miniModal.style.top = `${top}px`;
         miniModal.classList.remove("hidden");
         
-
         requestAnimationFrame(() => {
           miniModal.classList.remove("opacity-0", "scale-95");
           miniModal.classList.add("opacity-100", "scale-100");
@@ -742,12 +728,11 @@
         setTimeout(() => miniModal.classList.add("hidden"), 200);
       }
 
-     
       let currentSlide = 0;
       let slides = [];
 
       function openProjectModal(projectId) {
-        hideMiniModal(); 
+        hideMiniModal();
         const modal = document.getElementById("project-modal");
         const info = projectInfo[projectId];
 
