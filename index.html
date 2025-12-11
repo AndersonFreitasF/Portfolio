@@ -91,12 +91,6 @@
         font-family: "Space Grotesk", sans-serif;
       }
 
-      .spotlight-card {
-        position: relative;
-        background: #18181b;
-        overflow: hidden;
-      }
-
       .timeline-dot {
         box-shadow: 0 0 0 4px rgba(163, 230, 53, 0.2);
       }
@@ -120,49 +114,6 @@
         to {
           transform: translateX(-50%);
         }
-      }
-
-      #project-modal pre {
-        margin: 0;
-        padding: 0;
-        background: transparent;
-        color: #d4d4d8;
-        font-size: 14px;
-        line-height: 1.6;
-      }
-
-      #project-modal code {
-        color: #d4d4d8;
-      }
-
-      #project-modal code .keyword {
-        color: #c586c0;
-      }
-
-      #project-modal code .string {
-        color: #ce9178;
-      }
-
-      #project-modal code .function {
-        color: #dcdcaa;
-      }
-
-      #project-modal code .decorator {
-        color: #4ec9b0;
-      }
-
-      #project-modal code .class {
-        color: #4ec9b0;
-      }
-
-      #project-modal code .comment {
-        color: #6a9955;
-        font-style: italic;
-      }
-
-      #carousel-container {
-        display: flex;
-        overflow: hidden;
       }
     </style>
   </head>
@@ -358,68 +309,17 @@
               class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
               title="Tailwind"
             ></i>
-
-            <i
-              class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-git-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-
-            <i
-              class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-git-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
-            <i
-              class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"
-            ></i>
+            
+            <i class="devicon-java-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
+            <i class="devicon-spring-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
+            <i class="devicon-typescript-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
+            <i class="devicon-nodejs-plain-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
+            <i class="devicon-react-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
+            <i class="devicon-docker-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
+            <i class="devicon-git-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
+            <i class="devicon-postgresql-plain colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
+            <i class="devicon-npm-original-wordmark colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
+            <i class="devicon-tailwindcss-original colored text-4xl opacity-80 hover:opacity-100 transition-opacity"></i>
           </div>
         </div>
       </div>
@@ -470,7 +370,7 @@
             </div>
             <div class="mt-6 pt-6 border-t border-white/5">
               <p class="text-sm text-gray-500">
-                Idiomas: <span class="text-white">Portugues, Ingles</span>
+                Idiomas: <span class="text-white">Português, Inglês</span>
               </p>
             </div>
           </div>
@@ -647,142 +547,244 @@
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          
           <div
             class="bg-gradient-to-br from-surface to-black/60 border border-white/5 rounded-3xl overflow-hidden hover:border-primary/60 hover:shadow-[0_0_40px_rgba(190,242,100,0.2)] transition-all group relative cursor-pointer transform hover:scale-[1.02]"
             onclick="openProjectModal('acad')"
-            title="Clique para ver mais imagens do projeto"
+            title="Clique para ver mais"
           >
             <div class="relative bg-black/40 px-8 pt-8 pb-4">
-              <div
-                class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_rgba(190,242,100,0.18),_transparent_55%)]"
-              ></div>
-
+              <div class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_rgba(190,242,100,0.18),_transparent_55%)]"></div>
               <div class="relative max-w-md mx-auto">
-                <div
-                  class="bg-[#111827] rounded-2xl px-6 py-5 shadow-2xl border border-white/10"
-                >
+                <div class="bg-[#111827] rounded-2xl px-6 py-5 shadow-2xl border border-white/10">
                   <div class="flex items-center gap-1.5 mb-4">
                     <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
                     <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                     <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-                    <span
-                      class="ml-3 text-[11px] uppercase tracking-[0.18em] text-gray-500"
-                    >
-                      Projeto em destaque
-                    </span>
+                    <span class="ml-3 text-[11px] uppercase tracking-[0.18em] text-gray-500">Projeto Fullstack</span>
                   </div>
-
                   <div class="font-mono text-[11px] space-y-1.5 text-gray-300">
                     <div class="flex gap-1.5">
                       <span class="text-sky-400">const</span>
-                      <span class="text-white">academia</span>
+                      <span class="text-white">gym</span>
                       <span class="text-white">=</span>
-                      <span class="text-purple-400">async</span>
-                      <span class="text-white">()</span>
-                      <span class="text-white">&rArr;</span>
+                      <span class="text-purple-400">new</span>
+                      <span class="text-white">System()</span>
                     </div>
                     <div class="flex gap-2 pl-4 text-gray-500">
                       <span>//</span>
-                      <span>Sistema de gest&atilde;o de academia digital</span>
-                    </div>
-                    <div class="flex gap-2 pl-4">
-                      <span class="text-yellow-300">return</span>
-                      <span class="text-emerald-400">sucess</span>
+                      <span>Gestão de Academia</span>
                     </div>
                   </div>
                 </div>
-
-                <div
-                  class="mt-3 h-1 w-[72%] mx-auto rounded-full bg-black/60 group-hover:bg-black/80 transition-colors"
-                ></div>
+                <div class="mt-3 h-1 w-[72%] mx-auto rounded-full bg-black/60 group-hover:bg-black/80 transition-colors"></div>
               </div>
-
-              <div
-                class="mt-5 flex items-center justify-center gap-2 text-xs text-gray-500 group-hover:text-gray-300 transition-colors"
-              >
-                <i
-                  data-lucide="mouse-pointer-2"
-                  class="w-3.5 h-3.5 text-primary"
-                ></i>
-                <span> Clique para navegar pelas telas do projeto </span>
+              <div class="mt-5 flex items-center justify-center gap-2 text-xs text-gray-500 group-hover:text-gray-300 transition-colors">
+                <i data-lucide="mouse-pointer-2" class="w-3.5 h-3.5 text-primary"></i>
+                <span> Clique para ver detalhes </span>
               </div>
             </div>
-
             <div class="p-6 md:p-7">
               <div class="flex items-start justify-between gap-4 mb-4">
                 <div class="text-left">
-                  <p
-                    class="text-xs uppercase tracking-[0.25em] text-primary mb-2"
-                  >
-                    Fullstack • Projeto de Academia
-                  </p>
-                  <h3
-                    class="text-2xl md:text-3xl font-bold text-white font-display"
-                  >
-                    Sistema de Gest&atilde;o de Academia Digital
-                  </h3>
+                  <p class="text-xs uppercase tracking-[0.25em] text-primary mb-2">Web App</p>
+                  <h3 class="text-2xl font-bold text-white font-display">Gestão de Academia</h3>
                 </div>
                 <div class="flex flex-col items-end gap-2">
-                  <button
-                    class="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 text-[11px] font-medium text-gray-300 bg-white/5 group-hover:bg-white/10 transition-colors"
-                  >
-                    <span
-                      class="w-1.5 h-1.5 rounded-full bg-emerald-400"
-                    ></span>
-                    <span>Concluido</span>
-                  </button>
-                  <div class="flex items-center gap-2 text-sm">
-                    <a
-                      href="https://github.com/AndersonFreitasF/acad"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-white/60 hover:text-white transition-colors"
-                      title="Repositório"
-                    >
-                      <i data-lucide="git-branch" class="w-5 h-5"></i>
-                    </a>
-                    <button
-                      onclick="openProjectModal('acad')"
-                      class="text-white/60 hover:text-white transition-colors"
-                      title="Ver projeto"
-                    >
+                   <div class="flex items-center gap-2 text-sm">
+                    <button class="text-white/60 hover:text-white transition-colors">
                       <i data-lucide="external-link" class="w-5 h-5"></i>
                     </button>
                   </div>
                 </div>
               </div>
-
-              <p class="text-gray-400 mb-6 leading-relaxed text-sm text-left">
-                Plataforma completa para gest&atilde;o de treinos entre
-                professores e alunos, com cat&aacute;logo de treinos,
-                exerc&iacute;cios, pagamentos via PIX/Cart&atilde;o e dashboards
-                personalizados por tipo de usu&aacute;rio.
+              <p class="text-gray-400 mb-6 leading-relaxed text-sm text-left line-clamp-2">
+                Plataforma completa para gestão de treinos, exercícios e usuários.
               </p>
-
               <div class="flex flex-wrap gap-2 justify-start">
-                <span
-                  class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-600/90 border border-emerald-400/40 shadow-sm shadow-emerald-500/40"
-                  >NodeJs</span
-                >
-                <span
-                  class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-700/80 border border-emerald-400/40"
-                  >React</span
-                >
-                <span
-                  class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-700/80 border border-emerald-400/40"
-                  >PostgreSQL</span
-                >
-                <span
-                  class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-700/80 border border-emerald-400/40"
-                  >TypeScript</span
-                >
-                <span
-                  class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-700/80 border border-emerald-400/40"
-                  >Tailwind CSS</span
-                >
+                <span class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-600/90 border border-emerald-400/40">React</span>
+                <span class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-700/80 border border-emerald-400/40">Node.js</span>
               </div>
             </div>
           </div>
+
+          <div
+            class="bg-gradient-to-br from-surface to-black/60 border border-white/5 rounded-3xl overflow-hidden hover:border-primary/60 hover:shadow-[0_0_40px_rgba(190,242,100,0.2)] transition-all group relative cursor-pointer transform hover:scale-[1.02]"
+            onclick="openProjectModal('etl')"
+            title="Clique para ver mais"
+          >
+            <div class="relative bg-black/40 px-8 pt-8 pb-4">
+              <div class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_rgba(190,242,100,0.18),_transparent_55%)]"></div>
+              <div class="relative max-w-md mx-auto">
+                <div class="bg-[#111827] rounded-2xl px-6 py-5 shadow-2xl border border-white/10">
+                  <div class="flex items-center gap-1.5 mb-4">
+                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                    <span class="ml-3 text-[11px] uppercase tracking-[0.18em] text-gray-500">Data Engineering</span>
+                  </div>
+                  <div class="font-mono text-[11px] space-y-1.5 text-gray-300">
+                    <div class="flex gap-1.5">
+                      <span class="text-sky-400">def</span>
+                      <span class="text-white">process_data</span>
+                      <span class="text-white">():</span>
+                    </div>
+                    <div class="flex gap-2 pl-4 text-gray-500">
+                      <span>#</span>
+                      <span>ETL Vendas Combustível</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-3 h-1 w-[72%] mx-auto rounded-full bg-black/60 group-hover:bg-black/80 transition-colors"></div>
+              </div>
+              <div class="mt-5 flex items-center justify-center gap-2 text-xs text-gray-500 group-hover:text-gray-300 transition-colors">
+                <i data-lucide="mouse-pointer-2" class="w-3.5 h-3.5 text-primary"></i>
+                <span> Clique para ver detalhes </span>
+              </div>
+            </div>
+            <div class="p-6 md:p-7">
+              <div class="flex items-start justify-between gap-4 mb-4">
+                <div class="text-left">
+                  <p class="text-xs uppercase tracking-[0.25em] text-primary mb-2">Dados</p>
+                  <h3 class="text-2xl font-bold text-white font-display">ETL Vendas Combustível</h3>
+                </div>
+                 <div class="flex flex-col items-end gap-2">
+                   <div class="flex items-center gap-2 text-sm">
+                    <button class="text-white/60 hover:text-white transition-colors">
+                      <i data-lucide="external-link" class="w-5 h-5"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-400 mb-6 leading-relaxed text-sm text-left line-clamp-2">
+                Pipeline de dados para análise de vendas de combustíveis no Brasil.
+              </p>
+              <div class="flex flex-wrap gap-2 justify-start">
+                <span class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-600/90 border border-emerald-400/40">Python</span>
+                <span class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-700/80 border border-emerald-400/40">Pandas</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-gradient-to-br from-surface to-black/60 border border-white/5 rounded-3xl overflow-hidden hover:border-primary/60 hover:shadow-[0_0_40px_rgba(190,242,100,0.2)] transition-all group relative cursor-pointer transform hover:scale-[1.02]"
+            onclick="openProjectModal('tribunal')"
+            title="Clique para ver mais"
+          >
+            <div class="relative bg-black/40 px-8 pt-8 pb-4">
+              <div class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_rgba(190,242,100,0.18),_transparent_55%)]"></div>
+              <div class="relative max-w-md mx-auto">
+                <div class="bg-[#111827] rounded-2xl px-6 py-5 shadow-2xl border border-white/10">
+                  <div class="flex items-center gap-1.5 mb-4">
+                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                    <span class="ml-3 text-[11px] uppercase tracking-[0.18em] text-gray-500">Sistema Java</span>
+                  </div>
+                  <div class="font-mono text-[11px] space-y-1.5 text-gray-300">
+                    <div class="flex gap-1.5">
+                      <span class="text-sky-400">class</span>
+                      <span class="text-white">Processo</span>
+                      <span class="text-white">{</span>
+                    </div>
+                    <div class="flex gap-2 pl-4 text-gray-500">
+                      <span>//</span>
+                      <span>Gestão Jurídica</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-3 h-1 w-[72%] mx-auto rounded-full bg-black/60 group-hover:bg-black/80 transition-colors"></div>
+              </div>
+              <div class="mt-5 flex items-center justify-center gap-2 text-xs text-gray-500 group-hover:text-gray-300 transition-colors">
+                <i data-lucide="mouse-pointer-2" class="w-3.5 h-3.5 text-primary"></i>
+                <span> Clique para ver detalhes </span>
+              </div>
+            </div>
+            <div class="p-6 md:p-7">
+              <div class="flex items-start justify-between gap-4 mb-4">
+                <div class="text-left">
+                  <p class="text-xs uppercase tracking-[0.25em] text-primary mb-2">Back-End</p>
+                  <h3 class="text-2xl font-bold text-white font-display">Sistema Tribunal</h3>
+                </div>
+                 <div class="flex flex-col items-end gap-2">
+                   <div class="flex items-center gap-2 text-sm">
+                    <button class="text-white/60 hover:text-white transition-colors">
+                      <i data-lucide="external-link" class="w-5 h-5"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-400 mb-6 leading-relaxed text-sm text-left line-clamp-2">
+                Sistema de gestão e automação de processos jurídicos.
+              </p>
+              <div class="flex flex-wrap gap-2 justify-start">
+                <span class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-600/90 border border-emerald-400/40">Java</span>
+                <span class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-700/80 border border-emerald-400/40">Spring Boot</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-gradient-to-br from-surface to-black/60 border border-white/5 rounded-3xl overflow-hidden hover:border-primary/60 hover:shadow-[0_0_40px_rgba(190,242,100,0.2)] transition-all group relative cursor-pointer transform hover:scale-[1.02]"
+            onclick="openProjectModal('portfolio')"
+            title="Clique para ver mais"
+          >
+            <div class="relative bg-black/40 px-8 pt-8 pb-4">
+              <div class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_rgba(190,242,100,0.18),_transparent_55%)]"></div>
+              <div class="relative max-w-md mx-auto">
+                <div class="bg-[#111827] rounded-2xl px-6 py-5 shadow-2xl border border-white/10">
+                  <div class="flex items-center gap-1.5 mb-4">
+                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                    <span class="ml-3 text-[11px] uppercase tracking-[0.18em] text-gray-500">Frontend</span>
+                  </div>
+                  <div class="font-mono text-[11px] space-y-1.5 text-gray-300">
+                    <div class="flex gap-1.5">
+                      <span class="text-sky-400">&lt;</span>
+                      <span class="text-white">div</span>
+                      <span class="text-sky-400">&gt;</span>
+                      <span class="text-white">Portfolio</span>
+                      <span class="text-sky-400">&lt;/div&gt;</span>
+                    </div>
+                    <div class="flex gap-2 pl-4 text-gray-500">
+                      <span>&lt;!--</span>
+                      <span>Meu Site Pessoal</span>
+                      <span>--&gt;</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-3 h-1 w-[72%] mx-auto rounded-full bg-black/60 group-hover:bg-black/80 transition-colors"></div>
+              </div>
+              <div class="mt-5 flex items-center justify-center gap-2 text-xs text-gray-500 group-hover:text-gray-300 transition-colors">
+                <i data-lucide="mouse-pointer-2" class="w-3.5 h-3.5 text-primary"></i>
+                <span> Clique para ver detalhes </span>
+              </div>
+            </div>
+            <div class="p-6 md:p-7">
+              <div class="flex items-start justify-between gap-4 mb-4">
+                <div class="text-left">
+                  <p class="text-xs uppercase tracking-[0.25em] text-primary mb-2">Web Design</p>
+                  <h3 class="text-2xl font-bold text-white font-display">Portfólio Profissional</h3>
+                </div>
+                 <div class="flex flex-col items-end gap-2">
+                   <div class="flex items-center gap-2 text-sm">
+                    <button class="text-white/60 hover:text-white transition-colors">
+                      <i data-lucide="external-link" class="w-5 h-5"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-400 mb-6 leading-relaxed text-sm text-left line-clamp-2">
+                O site que você está acessando agora, feito para apresentar meus projetos.
+              </p>
+              <div class="flex flex-wrap gap-2 justify-start">
+                <span class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-600/90 border border-emerald-400/40">HTML5</span>
+                <span class="text-[11px] uppercase tracking-wide text-white px-3 py-1.5 rounded-full font-medium bg-emerald-700/80 border border-emerald-400/40">Tailwind</span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="mt-8">
@@ -914,12 +916,12 @@
         <div
           class="flex items-center justify-between p-6 border-b border-white/10"
         >
-          <h3 class="text-2xl font-bold text-white font-display">
-            Sistema de Gestão de Academia Digital
-          </h3>
+          <h3 id="modal-title" class="text-2xl font-bold text-white font-display">
+            </h3>
           <div class="flex items-center gap-4">
             <a
-              href="https://github.com/AndersonFreitasF/acad"
+              id="modal-github-link"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               class="text-white/60 hover:text-white transition-colors"
@@ -980,6 +982,11 @@
             </div>
 
             <div class="lg:col-span-5 flex flex-col gap-4 h-full justify-start">
+              
+              <div class="mb-4">
+                <p id="modal-description" class="text-gray-400 text-sm leading-relaxed"></p>
+              </div>
+
               <div class="mt-0">
                 <h5
                   class="text-sm text-gray-400 mb-2 font-semibold uppercase tracking-wider"
@@ -1004,13 +1011,6 @@
                 ></ul>
               </div>
 
-              <div class="hidden">
-                <p id="project-category"></p>
-                <h4 id="project-short-title"></h4>
-                <p id="project-description"></p>
-                <div id="project-tags"></div>
-              </div>
-
               <div class="mt-8 grid grid-cols-2 gap-4 pt-6">
                 <a
                   id="project-live-btn"
@@ -1021,7 +1021,7 @@
                 >
                 <a
                   id="project-repo-btn"
-                  href="https://github.com/AndersonFreitasF/acad"
+                  href="#"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="w-full justify-center px-4 py-3 border border-white/10 rounded-lg inline-flex items-center gap-2 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
@@ -1100,8 +1100,29 @@
             }
           }
 
-          let currentSlide = 0;
-          let slides = [];
+          const projectInfo = {
+            acad: {
+              title: "Sistema de Gestão de Academia Digital",
+              repoUrl: "https://github.com/AndersonFreitasF/acad",
+              description: "Plataforma completa para gestão de treinos entre professores e alunos, com catálogo de treinos, exercícios, pagamentos via PIX/Cartão e dashboards personalizados por tipo de usuário."
+            },
+            etl: {
+              title: "ETL Vendas de Combustível",
+              repoUrl: "https://github.com/AndersonFreitasF/ETL_vendas_combustivel",
+              description: "Pipeline de ETL (Extract, Transform, Load) desenvolvido para coletar, limpar e analisar dados de vendas de combustíveis no Brasil. O projeto utiliza Python e Pandas para processar grandes volumes de dados governamentais e gerar insights."
+            },
+            tribunal: {
+              title: "Sistema de Gestão Tribunal",
+              repoUrl: "https://github.com/AndersonFreitasF/tribunal",
+              description: "Aplicação backend robusta para gerenciamento de processos jurídicos e automação de consultas. Focado em arquitetura limpa e escalabilidade utilizando o ecossistema Spring."
+            },
+            portfolio: {
+              title: "Portfólio Pessoal",
+              repoUrl: "https://github.com/AndersonFreitasF/Portfolio",
+              liveUrl: "https://andersonfreitasf.github.io/Portfolio", 
+              description: "Projeto Frontend desenvolvido com foco em UI/UX moderno, utilizando TailwindCSS e efeitos de Glassmorphism. O código é organizado, semântico e totalmente responsivo."
+            }
+          };
 
           const projectImages = {
             acad: [
@@ -1112,6 +1133,18 @@
               { url: "https://i.imgur.com/Nzjdes4.png", alt: "Academia" },
               { url: "https://i.imgur.com/S9so43F.png", alt: "Academia" },
             ],
+            etl: [
+              { url: "https://placehold.co/800x500/18181b/a3e635?text=ETL+Process", alt: "ETL Diagram" },
+              { url: "https://placehold.co/800x500/18181b/FFF?text=Data+Analysis", alt: "Data Charts" },
+            ],
+            tribunal: [
+              { url: "https://placehold.co/800x500/18181b/a3e635?text=Backend+System", alt: "Backend" },
+              { url: "https://placehold.co/800x500/18181b/FFF?text=API+Endpoints", alt: "API" },
+            ],
+            portfolio: [
+              { url: "https://placehold.co/800x500/18181b/a3e635?text=Portfolio+Home", alt: "Home" },
+              { url: "https://placehold.co/800x500/18181b/FFF?text=Responsive+Design", alt: "Mobile" },
+            ]
           };
 
           const projectChallenges = {
@@ -1122,6 +1155,21 @@
               "Organização modular e otimizada",
               "Primeiro Projeto fullstack",
             ],
+            etl: [
+              "Tratamento de grandes volumes de dados",
+              "Normalização de dados inconsistentes da fonte",
+              "Otimização de performance com Pandas",
+            ],
+            tribunal: [
+              "Definir fluxo para otimização de prompts",
+              "Primeiro projeto com orquestração de agentes",
+              "Integração de IAs tanto locais quanto na nuvem",
+            ],
+            portfolio: [
+              "Criação de animações fluidas e performáticas",
+              "Design totalmente responsivo (Mobile First)",
+              "Implementação de um gateway de emails",
+            ]
           };
 
           const projectLearnings = {
@@ -1132,25 +1180,61 @@
               "Desenvolvimento frontend com React e Tailwind CSS",
               "Práticas de containerização e deploy com Docker",
             ],
+            etl: [
+              "Manipulação  de DataFrames",
+              "Limpeza e saneamento de dados",
+              "Visualização de dados para insights",
+            ],
+            tribunal: [
+              "Orquestração de multiplos agentes de IA",
+              "Configuração e otimização de prompts",
+              "Execução local de agentes e fluxo de refinamento",
+            ],
+            portfolio: [
+              "Domínio de Tailwind CSS e customização de config",
+              "Manipulação de DOM sem frameworks (Vanilla JS)",
+              "Conceitos de UI/UX modernos (Glassmorphism)",
+            ]
           };
+
+          let currentSlide = 0;
+          let slides = [];
 
           function openProjectModal(projectId) {
             const modal = document.getElementById("project-modal");
+            const info = projectInfo[projectId];
 
+         
+            if (info) {
+              document.getElementById("modal-title").innerText = info.title;
+              document.getElementById("modal-description").innerText = info.description;
+              
+              const repoBtn = document.getElementById("project-repo-btn");
+              const gitLink = document.getElementById("modal-github-link");
+              const liveBtn = document.getElementById("project-live-btn");
+
+              repoBtn.href = info.repoUrl;
+              gitLink.href = info.repoUrl;
+              liveBtn.href = info.liveUrl;
+
+
+            }
+
+            
             slides = projectImages[projectId] || [];
             currentSlide = 0;
-
             updateNewModalContent();
 
+           
             const challengesBox = document.getElementById("project-challenges");
             challengesBox.innerHTML = "";
-
             (projectChallenges[projectId] || []).forEach((item) => {
               const li = document.createElement("li");
               li.textContent = item;
               challengesBox.appendChild(li);
             });
 
+           
             const learningsBox = document.getElementById("project-learnings");
             if (learningsBox) {
               learningsBox.innerHTML = "";
@@ -1161,6 +1245,7 @@
               });
             }
 
+           
             modal.classList.remove("hidden");
             modal.classList.add("flex");
             setTimeout(() => modal.classList.remove("opacity-0"), 10);
