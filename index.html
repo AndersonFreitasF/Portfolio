@@ -37,6 +37,7 @@
               border: "var(--border-color)",
               primary: "var(--primary-color)",
               secondary: "var(--secondary-color)",
+              tertiary: "var(--tertiary-color)",
               foreground: "var(--text-main)",
               muted: "var(--text-muted)",
               cardborder: "var(--card-border)",
@@ -67,28 +68,33 @@
         --card-border: rgba(255, 255, 255, 0.1);
         --primary-color: #a3e635;
         --secondary-color: #ecfccb;
+        --tertiary-color: #a3e635; 
         --text-main: #ffffff;
         --text-muted: #a1a1aa;
         --heading-color: #ffffff;
         --nav-bg: rgba(9, 9, 11, 0.6);
-        --bg-pattern: linear-gradient(to right, #27272a 1px, transparent 1px),
-          linear-gradient(to bottom, #27272a 1px, transparent 1px);
+        --bg-pattern: linear-gradient(to right, #27272a 1px, transparent 1px), linear-gradient(to bottom, #27272a 1px, transparent 1px);
         --bg-pattern-opacity: 0.03;
+        --blob-color: rgba(163, 230, 53, 0.2); 
       }
 
       .theme-3c {
         --bg-color: #ffffff;
         --surface-color: #fafafa;
-        --border-color: rgba(251, 176, 52, 0.4);
-        --card-border: rgba(251, 176, 52, 0.5);
+        --border-color: rgba(211, 18, 42, 0.2);
+        --card-border: rgba(251, 176, 52, 0.3);
+        
         --primary-color: #d3122a;
         --secondary-color: #fbb034;
-        --tertiary-color: #006633;
+        --tertiary-color: #006633; /* Verde mais escuro para contraste */
+        
         --text-main: #18181b;
         --text-muted: #52525b;
         --heading-color: #d3122a;
         --nav-bg: rgba(255, 255, 255, 0.85);
-        --bg-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill-opacity='0.08'%3E%3Ccircle fill='%23d3122a' cx='18' cy='20' r='6'/%3E%3Ccircle fill='%23fbb034' cx='42' cy='20' r='6'/%3E%3Ccircle fill='%23006633' cx='30' cy='38' r='6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        --blob-color: rgba(0, 102, 51, 0.15);
+        
+        --bg-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill-opacity='0.15'%3E%3Ccircle fill='%23d3122a' cx='18' cy='20' r='6'/%3E%3Ccircle fill='%23fbb034' cx='42' cy='20' r='6'/%3E%3Ccircle fill='%23006633' cx='30' cy='38' r='6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         --bg-pattern-opacity: 1;
       }
 
@@ -100,8 +106,8 @@
       }
 
       #bg-pattern-overlay {
-        opacity: var(--bg-pattern-opacity);
-        transition: opacity 0.5s ease, background-image 0.5s ease;
+          opacity: var(--bg-pattern-opacity);
+          transition: opacity 0.5s ease, background-image 0.5s ease;
       }
 
       .noise-overlay {
@@ -127,6 +133,11 @@
         background: var(--border-color);
         border-radius: 4px;
       }
+      
+      /* Scrollbar hover verde no tema claro */
+      .theme-3c ::-webkit-scrollbar-thumb:hover {
+        background: var(--tertiary-color) !important;
+      }
       ::-webkit-scrollbar-thumb:hover {
         background: var(--primary-color);
       }
@@ -137,46 +148,77 @@
         border: 1px solid var(--border-color);
         transition: border-color 0.3s ease, background 0.3s ease;
       }
-
+      
       .theme-3c .glass-nav {
-        border-bottom-width: 2px;
+          border-bottom-width: 2px;
+          border-color: rgba(251, 176, 52, 0.4);
+      }
+
+      /* Links da navegação hover verde no tema claro */
+      .theme-3c .glass-nav .hidden a:hover {
+          color: var(--tertiary-color) !important;
       }
 
       .text-display {
         font-family: "Space Grotesk", sans-serif;
       }
+      
+      h1, h2, h3, .text-display.font-bold {
+          color: var(--heading-color);
+          transition: color 0.3s ease;
+      }
 
-      h1,
-      h2,
-      h3,
-      .text-display.font-bold {
-        color: var(--heading-color);
-        transition: color 0.3s ease;
+      /* Botões outline (Fale Comigo, Repositório) hover verde no tema claro */
+      .theme-3c a[href="#contact"].border-border:hover,
+      .theme-3c #project-repo-btn:hover,
+      .theme-3c .border-border.text-foreground:hover {
+          border-color: var(--tertiary-color) !important;
+          color: var(--tertiary-color) !important;
       }
 
       .timeline-dot {
         box-shadow: 0 0 0 4px rgba(163, 230, 53, 0.2);
       }
-
+      
       .theme-3c .timeline-dot {
         background-color: var(--primary-color);
-        box-shadow: 0 0 0 4px rgba(211, 18, 42, 0.2);
+        box-shadow: 0 0 0 4px rgba(211, 18, 42, 0.15);
       }
-      .theme-3c .timeline-dot.secondary {
-        background-color: var(--secondary-color);
-        box-shadow: 0 0 0 4px rgba(251, 176, 52, 0.2);
+      .theme-3c .timeline-dot.green-dot {
+          background-color: var(--tertiary-color);
+          box-shadow: 0 0 0 4px rgba(0, 102, 51, 0.15);
       }
 
       .theme-3c .group:hover .group-hover\:border-primary\/50,
       .theme-3c .hover\:border-primary\/30:hover {
-        border-color: var(--secondary-color) !important;
-        box-shadow: 0 10px 30px -10px rgba(251, 176, 52, 0.3);
+          border-color: var(--secondary-color) !important;
+          box-shadow: 0 10px 30px -10px rgba(251, 176, 52, 0.3);
       }
+      
+      /* Ícone de User na seção Sobre fica verde */
+      .theme-3c #about .md\:col-span-2:first-child .w-16 {
+            color: var(--tertiary-color);
+            border-color: rgba(0, 102, 51, 0.3);
+      }
+
+      /* Tags de tecnologia ficam verdes no tema claro */
+      .theme-3c #about .flex-wrap span,
+      .theme-3c #experience .flex-wrap span,
+      .theme-3c #mm-tags span {
+          color: var(--tertiary-color) !important;
+          border-color: rgba(0, 102, 51, 0.4) !important;
+          background-color: rgba(0, 102, 51, 0.05) !important;
+      }
+      .theme-3c #about .flex-wrap span:hover {
+           border-color: var(--tertiary-color) !important;
+      }
+
 
       .marquee-container {
         overflow: hidden;
         white-space: nowrap;
         position: relative;
+        width: 100%;
       }
       .marquee-content {
         display: inline-flex;
@@ -201,9 +243,12 @@
         transition: opacity 0.2s ease, transform 0.2s ease;
         pointer-events: none;
       }
-
+      
       .theme-3c #mini-modal {
-        border-color: var(--secondary-color);
+          border-color: var(--secondary-color);
+      }
+      .theme-3c #mm-icon {
+          background-color: var(--tertiary-color);
       }
 
       .theme-toggle-btn {
@@ -211,19 +256,23 @@
         overflow: hidden;
         transition: all 0.3s ease;
       }
-
+      
       .theme-3c .theme-toggle-btn {
         border-color: var(--secondary-color);
-        background: linear-gradient(
-          135deg,
-          rgba(211, 18, 42, 0.1),
-          rgba(251, 176, 52, 0.15),
-          rgba(0, 102, 51, 0.1)
-        );
+        background: linear-gradient(135deg, rgba(211, 18, 42, 0.1), rgba(251, 176, 52, 0.15), rgba(0, 102, 51, 0.1));
         color: var(--primary-color);
       }
       .theme-3c .theme-toggle-btn i {
-        fill: rgba(211, 18, 42, 0.2);
+          fill: rgba(211, 18, 42, 0.2);
+      }
+
+      .contact-blob {
+          background-color: var(--blob-color);
+          transition: background-color 0.5s ease;
+      }
+      
+      .theme-3c .status-dot {
+          background-color: var(--tertiary-color);
       }
     </style>
   </head>
@@ -329,23 +378,20 @@
         onclick="toggleMenu()"
         >Contato</a
       >
-      <button
-        class="absolute top-8 right-8 text-foreground"
-        onclick="toggleMenu()"
-      >
+      <button class="absolute top-8 right-8 text-foreground" onclick="toggleMenu()">
         <i data-lucide="x" class="w-8 h-8"></i>
       </button>
     </div>
 
     <section
       id="home"
-      class="min-h-screen flex flex-col items-center justify-start pt-48 pb-20 px-4 relative"
+      class="min-h-screen flex flex-col items-center justify-between pt-32 px-4 relative"
     >
-      <div class="text-center max-w-4xl mx-auto space-y-6">
+      <div class="flex-1 flex flex-col justify-center w-full max-w-4xl mx-auto text-center space-y-6">
         <div
-          class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface/50 text-xs text-muted mb-4 animate-fade-in-up"
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface/50 text-xs text-muted mb-4 animate-fade-in-up self-center"
         >
-          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse status-dot"></span>
           Disponível para novos desafios
         </div>
 
@@ -386,7 +432,7 @@
       </div>
 
       <div
-        class="absolute bottom-10 left-0 w-full border-y border-border bg-surface/20 backdrop-blur-sm py-6"
+        class="w-full border-y border-border bg-surface/20 backdrop-blur-sm py-6 mt-12"
       >
         <div class="marquee-container">
           <div class="marquee-content gap-16 px-4">
@@ -527,7 +573,9 @@
               >
                 <i data-lucide="user" class="w-8 h-8"></i>
               </div>
-              <h3 class="text-2xl font-bold mb-4 font-display">A Jornada</h3>
+              <h3 class="text-2xl font-bold mb-4 font-display">
+                A Jornada
+              </h3>
               <div class="space-y-4 text-muted leading-relaxed">
                 <p>
                   Minha história com código começou no ensino médio, onde tive
@@ -582,7 +630,9 @@
           <div
             class="md:col-span-2 md:row-span-1 bg-surface border border-cardborder rounded-3xl p-8 relative overflow-hidden group hover:border-primary/30 transition-all"
           >
-            <h3 class="text-xl font-bold mb-6 font-display z-10 relative">
+            <h3
+              class="text-xl font-bold mb-6 font-display z-10 relative"
+            >
               Stack Principal
             </h3>
             <div class="flex flex-wrap gap-3 relative z-10">
@@ -680,7 +730,7 @@
 
           <div class="mb-10 md:ml-12 ml-8 relative group">
             <span
-              class="absolute -left-[41px] md:-left-[59px] top-1 w-5 h-5 bg-muted rounded-full border-4 border-background group-hover:bg-secondary transition-colors timeline-dot secondary"
+              class="absolute -left-[41px] md:-left-[59px] top-1 w-5 h-5 bg-muted rounded-full border-4 border-background group-hover:bg-secondary transition-colors timeline-dot green-dot"
             ></span>
 
             <div
@@ -722,14 +772,16 @@
 
     <section id="projects" class="py-32 relative w-full overflow-hidden">
       <div class="max-w-7xl mx-auto text-center px-4 mb-12">
-        <h2 class="text-display text-3xl md:text-4xl font-bold">Projetos</h2>
+        <h2 class="text-display text-3xl md:text-4xl font-bold">
+          Projetos
+        </h2>
         <p class="text-muted mt-2 text-sm">
           Passe o mouse para ver detalhes • Clique para expandir
         </p>
       </div>
 
       <div class="marquee-container">
-        <div class="marquee-content gap-8 pr-8">
+        <div class="marquee-content gap-8 px-4">
           <div
             class="w-80 h-48 bg-surface border border-cardborder rounded-2xl overflow-hidden shrink-0 cursor-pointer relative group transition-all hover:border-primary/50"
             onclick="openProjectModal('acad')"
@@ -935,7 +987,7 @@
 
     <section id="contact" class="py-24 px-4">
       <div
-        class="max-w-2xl mx-auto bg-surface border border-cardborder rounded-3xl p-8 md:p-12 relative overflow-hidden"
+        class="max-w-2xl mx-auto bg-surface border border-cardborder rounded-3xl p-8 md:p-12 relative overflow-hidden contact-blob"
       >
         <div
           class="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[60px] rounded-full pointer-events-none"
@@ -1022,7 +1074,9 @@
           ><i data-lucide="instagram" class="w-5 h-5"></i
         ></a>
       </div>
-      <p class="text-xs text-muted">&copy; 2025 Anderson Freires de Freitas.</p>
+      <p class="text-xs text-muted">
+        &copy; 2025 Anderson Freires de Freitas.
+      </p>
     </footer>
 
     <div
@@ -1072,7 +1126,10 @@
         <div
           class="flex items-center justify-between p-6 border-b border-cardborder"
         >
-          <h3 id="modal-title" class="text-2xl font-bold font-display"></h3>
+          <h3
+            id="modal-title"
+            class="text-2xl font-bold font-display"
+          ></h3>
           <div class="flex items-center gap-4">
             <a
               id="modal-github-link"
@@ -1186,9 +1243,9 @@
     <script>
       lucide.createIcons();
 
-      const themeToggleBtn = document.getElementById("theme-toggle");
-      themeToggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("theme-3c");
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('theme-3c');
       });
 
       const mobileMenu = document.getElementById("mobile-menu");
